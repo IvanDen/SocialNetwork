@@ -1,0 +1,13 @@
+
+.chat {width: 70%; display: flex; flex-direction: column;}
+
+.message {max-width: 70%; display: flex; margin: 10px 0;}
+.message .avaWrap {display: flex; flex-direction: column; flex-shrink: 0;}
+.message .avaWrap span {text-align: center;}
+.message.my {margin: 10px 0 0 auto; justify-content: flex-end;}
+
+.avatar {width: 70px; height: 70px; border-radius: 50%; background: #80aab8; flex-shrink: 0; margin-right: 10px;}
+.avatar.my {margin-left: 10px;}
+
+.message .messageText {display: flex; word-wrap: break-word; padding: 10px 20px; border: 1px solid #8190A5; border-radius: 25px; align-items: center;}
+.message .messageText.my {border: 1px solid #4be04f;}

@@ -1,0 +1,6 @@
+/*----profile----*/
+.mainImg {width: 100%;}
+.mainImg img {height: 224px; width: 100%;}
+.userInfo {display: flex;}
+.userInfo .avatar {width: 174px; height: 164px;}
+.userInfo .infoText {display: flex; flex-direction: column; margin-left: 45px;}

@@ -1,0 +1,5 @@
+.friendsWrap {width: 100%; display: flex; flex-direction: column; margin-top: 50px; font-family: lato;}
+.friendsWrap .title {color: #fff; font-size: 50px; font-weight: 300;line-height: 65px; text-align: left;}
+.friendsWrap .bestFriends {width: 80%; display: flex; justify-content: space-between;}
+.friendsWrap .bestFriends .itemFriends {display: flex; flex-direction: column; flex-shrink: 0; align-items: center; color: #ffffff;}
+.friendsWrap .bestFriends .itemFriends img {width: 50px; ;  border-radius: 50%; background: #FFC82C; margin-bottom: 10px;}
