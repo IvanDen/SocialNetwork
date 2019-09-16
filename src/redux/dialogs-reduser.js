@@ -46,8 +46,8 @@ const dialogsReducer = (state = initialState, action) => {
     }
 }
 
-export const sendTextChatActionCreator = () => ({type: SEND_TEXT_CHAT});
-export const updateNewChatTextActionCreator = (text) =>
+export const sendTextChat = () => ({type: SEND_TEXT_CHAT});
+export const updateNewChatText = (text) =>
     ({type: UPDATE_NEW_CHAT, newText: text });
 
 export default dialogsReducer;
