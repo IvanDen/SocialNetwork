@@ -15,8 +15,6 @@ import Preloader from "../../Common/Preloader/Preloader.js";
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-
-
         this.props.setToggleIsFetching(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=
         ${this.props.currentPage}

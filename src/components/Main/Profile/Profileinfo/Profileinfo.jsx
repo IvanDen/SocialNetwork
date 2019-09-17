@@ -1,9 +1,14 @@
 import React from 'react';
 import Class from './Profileinfo.module.css';
+import Preloader from "../../../Common/Preloader/Preloader";
 
 
 
 const Profileinfo = (props) => {
+    debugger;
+    if (!props.profile){
+        return <Preloader />
+    }
 
     return (
         <div>
@@ -11,7 +16,9 @@ const Profileinfo = (props) => {
                 <img src={'./img/content-img.jpg'} alt="" className="main-img"/>
             </div>
             <div className={Class.userInfo}>
-                <img className={Class.avatar} src={"./img/myAvatar.png"} alt="avatar" />
+                <img className={Class.avatar} src={props.profile.photos.small!= null
+                    ? props.profile.photos.small
+                    : "./img/myAvatar.png"} alt="avatar" />
                 <div className={Class.infoText}>
                     <h1> Ivan D</h1>
                     <span>Date of Birth: 9 january</span>
