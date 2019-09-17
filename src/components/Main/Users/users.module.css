@@ -1,6 +1,11 @@
+section.users {display: flex; flex-direction: column; margin: 0 auto;}
+.userItem {display: flex; justify-content: center; align-items: stretch; max-width: 500px; margin: 10px auto 0 30px;}
+.usresInfo {display: flex; padding: 10px 20px; border: 1px solid #8190A5; border-radius: 15px; min-height: 100%;}
+.imgWrap {display: flex; flex-direction: column; align-items: center; margin-right: 20px;}
+.nameStatys {margin-right: 15px;}
 .avatar {width: 70px; height: 70px; border-radius: 50%; background: #80aab8; flex-shrink: 0; margin-right: 10px;}
-button.subscribe {font-size: 30px;}
-.pageList {display: flex; width: 100%; margin: 20px 0;}
+button.subscribe {font-size: 30px; width: 150px;}
+.pageList {display: flex; width: 100%; margin: 20px 0;  flex-wrap: wrap;}
 .pageList span {margin: 0 10px; cursor: pointer;}
 .pageList span:hover {opacity: 0.5;}
 .selectedPage {font-weight: bold;}

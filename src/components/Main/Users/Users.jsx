@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './users.module.css'
+import {NavLink} from "react-router-dom";
 
 
 let Users = (props) => {
-
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
     let pages = [];
@@ -11,7 +11,7 @@ let Users = (props) => {
         pages.push(i);
     }
 
-    return <div>
+    return <section className={styles.users}>
                 <div className={styles.pageList}>
                 {pages.map(p => {
                     return <span className={props.currentPage === p && styles.selectedPage}
@@ -19,10 +19,12 @@ let Users = (props) => {
                 })}
                 </div> {
                 props.users.map(user =>
-                <div key={user.id}>
-                    <span>
+                <div key={user.id} className={styles.userItem}>
+                    <div className={styles.imgWrap}>
                           <div>
-                              <img src={user.photos.small != null ? user.photos.small : "./img/list-users.png"} className={styles.avatar} />
+                              <NavLink to={'/profile/' + user.id}>
+                                <img src={user.photos.small != null ? user.photos.small : "./img/list-users.png"} className={styles.avatar} />
+                              </NavLink>
                           </div>
                           <div>
                               {user.followed
@@ -31,9 +33,9 @@ let Users = (props) => {
                                   : <button className={`${styles.subscribe} button`}
                                             onClick={() => [props.follow(user.id)]}>Follow</button>}
                           </div>
-                    </span>
-                    <span>
-                        <span>
+                    </div>
+                    <div className={styles.usresInfo}>
+                        <span className={styles.nameStatys}>
                             <div>{user.name}</div>
                             <div>{user.status}</div>
                         </span>
@@ -41,9 +43,9 @@ let Users = (props) => {
                             <div>{"user.location.country"}</div>
                             <div>{"user.location.city"}</div>
                         </span>
-                    </span>
+                    </div>
                 </div>)}
-            </div>
+            </section>
 
 }
 

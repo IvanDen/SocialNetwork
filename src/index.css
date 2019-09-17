@@ -1,9 +1,9 @@
 html, body {min-height: 100%; margin: 0; padding: 0; width: 100%; float: left;}
 html {height: 100%;}
 body {font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;  -webkit-font-smoothing: antialiased;  -moz-osx-font-smoothing: grayscale; overflow-x: hidden; position: relative;}
-.button {cursor: pointer; padding: 5px; background: #13CE66; color: #ffffff;}
+"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+sans-serif;  -webkit-font-smoothing: antialiased;  -moz-osx-font-smoothing: grayscale; overflow-x: hidden; position: relative;}
+.button {cursor: pointer; padding: 5px 15px; background: #13CE66; color: #ffffff;}
 .button:hover {opacity: 0.7;}
 a {text-decoration: none; color: #000000;}
 a:hover {opacity: 0.7;}
