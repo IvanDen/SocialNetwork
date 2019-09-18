@@ -1,6 +1,24 @@
 /*----profile----*/
+h1 {margin: 0;}
 .mainImg {width: 100%;}
 .mainImg img {height: 224px; width: 100%;}
 .userInfo {display: flex;}
 .userInfo .avatar {width: 174px; height: 164px;}
-.userInfo .infoText {display: flex; flex-direction: column; margin-left: 45px;}
+
+.infoWrap {display: flex; justify-content: space-between;}
+.infoText {display: flex; flex-direction: column; margin: 0 20px;}
+.infoText span {margin-top: 10px;}
+.infoItemBlock {font-weight: bold;}
+.infoItemBlock span {font-weight: normal;}
+
+.contactsItem {display: flex; width: 100%; align-items: center; margin: 10px 0;}
+.imgSocial {background: url('../../../../img/sicial-preview.png') no-repeat; width: 26px; height: 26px; display: block; flex-shrink: 0; margin-right: 15px; filter: invert(45%) sepia(71%) saturate(631%) hue-rotate(106deg) brightness(100%) contrast(101%);}
+.imgSocial.facebook {background-position-x: -9px; background-position-y: -9px;}
+.imgSocial.website {background-position-x: -279px; background-position-y: -219px;}
+.imgSocial.imgSocial.vk {background-position-x: -129px; background-position-y: -9px;}
+.imgSocial.twitter {background-position-x: -39px; background-position-y: -9px;}
+.imgSocial.instagram {background-position-x: -99px; background-position-y: -9px;}
+.imgSocial.youtube {background-position-x: -9px; background-position-y: -39px;}
+.imgSocial.github {background-position-x: -69px; background-position-y: -129px;}
+.imgSocial.mainLink {background-position-x: -279px; background-position-y: -219px;}
+.contactsItem .item {margin-right: 5px; font-weight: bold;}
