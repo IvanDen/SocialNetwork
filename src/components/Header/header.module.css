@@ -1,2 +1,5 @@
-header {grid-area: h; background: #00b267; width: 100%; flex:0 0 auto;}
+header {grid-area: h; background: #00b267; width: 100%; flex:0 0 auto; padding: 5px 15px; align-items: center; justify-content: space-between; display: flex;}
 header .logo {height: 40px; pointer-events: none; background-size: cover;}
+
+.loginBlock {float: right;}
+.loginBlock .linc {text-decoration: none; color: #fff; font-size: 34px;}
