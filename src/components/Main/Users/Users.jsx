@@ -3,6 +3,7 @@ import styles from './users.module.css'
 import {NavLink} from "react-router-dom";
 import userPhoto from "../../../img/list-users.png"
 import * as axios from "axios/index";
+import {usersAPI} from "../../../api/api";
 
 
 let Users = (props) => {
@@ -34,28 +35,31 @@ let Users = (props) => {
                               {user.followed
                                   ? <button className={`${styles.subscribe}`}
                                             onClick={() => {
-                                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
+
+                                                /*axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
                                                     withCredentials: true,
                                                     headers: {
                                                         'API-KEY': 'ef3749fc-291d-4d38-9a5b-8971e825c8f4'
                                                     }
-                                                })
-                                                    .then(response => {
-                                                        if (response.data.resultCode == 0) {
+                                                })*/
+                                                usersAPI.unFollow(user.id)
+                                                    .then(data => {
+                                                        if (data.resultCode == 0) {
                                                             props.unfollow(user.id);
                                                         }
                                                     });
                                             }}>Unfollow</button>
                                   : <button className={`${styles.subscribe}`}
                                             onClick={() => {
-                                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
+                                                /*axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
                                                     withCredentials: true,
                                                     headers: {
                                                         'API-KEY': 'ef3749fc-291d-4d38-9a5b-8971e825c8f4'
                                                     }
-                                                })
-                                                    .then(response => {
-                                                        if (response.data.resultCode == 0) {
+                                                })*/
+                                                usersAPI.follow(user.id)
+                                                    .then(data => {
+                                                        if (data.resultCode == 0) {
                                                             props.follow(user.id);
                                                         }
                                                     });
