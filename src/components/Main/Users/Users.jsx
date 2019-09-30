@@ -2,8 +2,8 @@ import React from 'react';
 import styles from './users.module.css'
 import {NavLink} from "react-router-dom";
 import userPhoto from "../../../img/list-users.png"
-import * as axios from "axios/index";
-import {usersAPI} from "../../../api/api";
+
+
 
 
 let Users = (props) => {
@@ -14,7 +14,7 @@ let Users = (props) => {
         pages.push(i);
     }
 
-    return <section className={styles.users}>
+    return <section className={`${styles.users}`}>
                 <div className={styles.pageList}>
                 {pages.map(p => {
                     return <span key={p} className={props.currentPage === p ? styles.selectedPage : ''}
@@ -33,48 +33,28 @@ let Users = (props) => {
                           </div>
                           <div>
                               {user.followed
-                                  ? <button className={`${styles.subscribe}`}
+                                  ? <button disabled={props.followingInProgress.some(id => id === user.id)}
+                                            className={`${styles.subscribe}`}
                                             onClick={() => {
-
-                                                /*axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
-                                                    withCredentials: true,
-                                                    headers: {
-                                                        'API-KEY': 'ef3749fc-291d-4d38-9a5b-8971e825c8f4'
-                                                    }
-                                                })*/
-                                                usersAPI.unFollow(user.id)
-                                                    .then(data => {
-                                                        if (data.resultCode == 0) {
-                                                            props.unfollow(user.id);
-                                                        }
-                                                    });
+                                                props.unfollow(user.id);
                                             }}>Unfollow</button>
-                                  : <button className={`${styles.subscribe}`}
+
+                                  : <button disabled={props.followingInProgress.some(id => id === user.id)}
+                                            className={`${styles.subscribe}`}
                                             onClick={() => {
-                                                /*axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
-                                                    withCredentials: true,
-                                                    headers: {
-                                                        'API-KEY': 'ef3749fc-291d-4d38-9a5b-8971e825c8f4'
-                                                    }
-                                                })*/
-                                                usersAPI.follow(user.id)
-                                                    .then(data => {
-                                                        if (data.resultCode == 0) {
-                                                            props.follow(user.id);
-                                                        }
-                                                    });
+                                                props.follow(user.id);
                                             }}>Follow</button>}
                           </div>
                     </div>
                     <div className={styles.usersInfo}>
-                        <span className={styles.nameStatus}>
-                            <div>{user.name}</div>
-                            <div>{user.status}</div>
-                        </span>
-                        <span>
-                            <div>{"user.location.country"}</div>
-                            <div>{"user.location.city"}</div>
-                        </span>
+                        <div className={styles.nameAndStatus}>
+                            <span>{user.name}</span>
+                            <span className={styles.userStatus}>{user.status}</span>
+                        </div>
+                        <div>
+                            <span>{"user.location.country"}</span>
+                            <span>{"user.location.city"}</span>
+                        </div>
                     </div>
                 </div>)}
             </section>

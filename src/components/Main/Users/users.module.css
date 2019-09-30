@@ -5,10 +5,13 @@ section.users {display: flex; flex-direction: column; margin: 0 auto;}
 .pageList span:hover {opacity: 0.5;}
 .selectedPage {font-weight: bold;}
 
-.userItem {display: flex; justify-content: center; align-items: stretch; max-width: 500px; margin: 10px auto 0 30px;}
-.usersInfo {display: flex; padding: 10px 20px; border: 1px solid #8190A5; border-radius: 15px; min-height: 100%;}
+.userItem {display: flex; justify-content: end; align-items: stretch; max-width: 1000px; margin: 10px auto 0 30px; width: 100%;}
+.usersInfo {display: flex; padding: 10px 20px; border: 1px solid #8190A5; border-radius: 15px; min-height: 100%; width: 100%; max-width: 850px;}
+.usersInfo > div {width: 49%; display: flex; flex-direction: column;}
+.userStatus {width: 100%; max-width: 850px; word-wrap: break-word;}
 .imgWrap {display: flex; flex-direction: column; align-items: center; margin-right: 20px;}
-.nameStatus {margin-right: 15px;}
+.nameAndStatus {margin-right: 15px; display: flex; flex-direction: column;}
+
 .avatar {width: 70px; height: 70px; border-radius: 50%; background: #80aab8; flex-shrink: 0; margin-right: 10px;}
 
 button.subscribe {font-size: 30px; width: 150px;}
