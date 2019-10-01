@@ -1,3 +1,7 @@
+import {AuthAPI, usersAPI} from "../api/api";
+import {setToggleIsFetching, setUsers, setUsersTotalCount} from "./users-reduser";
+import * as axios from "axios/index";
+
 const SET_USER_DATA ='SET_USER_DATA';
 
 
@@ -28,5 +32,17 @@ export const setAuthUserData = (userId, email, login) => ({
     type: SET_USER_DATA,
     data: {userId, email, login}
 });
+
+export const authUser = () => {
+    return (dispatch) => {
+        AuthAPI.checkAuth()
+            .then(response => {
+                if (response.resultCode === 0) {
+                    let {id, email, login} = response.data;
+                    dispatch(setAuthUserData(id, email, login));
+                }
+            });
+    }
+}
 
 export default authReducer;

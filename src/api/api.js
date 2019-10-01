@@ -24,12 +24,24 @@ export const usersAPI = {
     },
     unFollow(userId) {
 
-        return instance.delete(`follow/${userId}`,
-            )
+        return instance.delete(`follow/${userId}`,)
             .then(response => {
                 return response.data
             });
+    },
+    getProfile(userId) {
+        debugger;
+        return instance.get(`profile/${userId}`);
+
     }
+}
+export const AuthAPI = {
+    checkAuth() {
+        return instance.get(`auth/me`,)
+            .then(response => {
+                return response.data
+            });
+    },
 }
 
 

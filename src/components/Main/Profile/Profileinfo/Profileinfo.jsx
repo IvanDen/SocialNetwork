@@ -5,7 +5,7 @@ import Preloader from "../../../Common/Preloader/Preloader";
 
 
 const Profileinfo = (props) => {
-
+debugger;
     if (!props.profile){
         return <Preloader />
     }
@@ -15,7 +15,8 @@ const Profileinfo = (props) => {
                 <img src={'./img/content-img.jpg'} alt="" className="main-img"/>
             </div>
             <div className={Class.userInfo}>
-                <img className={Class.avatar} src={props.profile.photos.large!= null
+                <img className={Class.avatar} src={
+                    props.profile.photos.large != null
                     ? props.profile.photos.small
                     : "./img/myAvatar.png"} alt="avatar" />
                 <div className={Class.infoWrap}>
