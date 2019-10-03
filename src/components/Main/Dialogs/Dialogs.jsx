@@ -2,6 +2,7 @@ import React from 'react';
 import Class from './Dialogs.module.css';
 import People from "./People/People";
 import {Chat, ChatMy} from "./Chat/Chat";
+import {Redirect} from "react-router-dom";
 
 
 const Dialogs = (props) => {
@@ -27,6 +28,11 @@ const Dialogs = (props) => {
             alert('enter your text!');
         }
     }
+
+    if (!props.isAuth) {
+        return <Redirect to={'/login'} />
+    };
+
 //We control the entered text in the state
     let onMessageChange = () => {
         let text = newMessageElement.current.value;
