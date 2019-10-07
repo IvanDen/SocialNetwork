@@ -30,7 +30,7 @@ export const usersAPI = {
             });
     },
     getProfile(userId) {
-        debugger;
+
         return instance.get(`profile/${userId}`);
 
     }

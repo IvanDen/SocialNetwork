@@ -1,19 +1,19 @@
 import React from 'react';
 import Class from './Profileinfo.module.css';
 import Preloader from "../../../Common/Preloader/Preloader";
+import ProfileStatus from "./ProfileStatus";
 
 
 
 const Profileinfo = (props) => {
-debugger;
     if (!props.profile){
         return <Preloader />
     }
     return (
         <div>
-            <div className={Class.mainImg}>
+            {/*<div className={Class.mainImg}>
                 <img src={'./img/content-img.jpg'} alt="" className="main-img"/>
-            </div>
+            </div>*/}
             <div className={Class.userInfo}>
                 <img className={Class.avatar} src={
                     props.profile.photos.large != null
@@ -22,7 +22,11 @@ debugger;
                 <div className={Class.infoWrap}>
                     <div className={Class.infoText}>
                         <h1>Name: {props.profile.fullName}</h1>
-                        <span className={`${Class.infoItemBlock}`}>About me: <span>{props.profile.aboutMe}</span></span>
+                        {
+                            props.profile.userId === 1617
+                                ? <ProfileStatus status={"Hello"} />
+                                : <span className={`${Class.infoItemBlock}`}>About me: <span>{props.profile.aboutMe}</span></span>
+                        }
                         <span className={`${Class.infoItemBlock}`}>looking for a job: <span>{props.profile.lookingForAJob === false ? "no" : "yes"}</span></span>
                         <span className={`${Class.infoItemBlock}`}>looking for a job description: <span>{props.profile.lookingForAJobDescription}</span></span>
                         <span className={`${Class.infoItemBlock}`}>City: Tbilisi</span>

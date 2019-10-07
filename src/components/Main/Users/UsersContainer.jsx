@@ -53,9 +53,9 @@ let mapsStateToProps = (state) => {
 };
 
 
-withAuthRedirect(connect(mapsStateToProps,
+/*withAuthRedirect(connect(mapsStateToProps,
     {Follow, unFollow, setCurrentPage,
-    toggleFollowingProgress, getUsers})(UsersContainer));
+    toggleFollowingProgress, getUsers})(UsersContainer));*/
 
 export default compose(
     withAuthRedirect,
