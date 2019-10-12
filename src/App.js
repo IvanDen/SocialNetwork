@@ -1,4 +1,5 @@
 import React from 'react';
+import './index.css';
 import './App.css';
 import Navbar from "./components/Navbar/navbar";
 import News from "./components/Main/News/News";
@@ -18,6 +19,7 @@ function App(props) {
       <div className="app-wrapper">
           <HeaderContainer />
           <Navbar />
+
           <main>
               <Route path={'/profile/:userId?'} render={ () => <ProfileContainer />} />
 

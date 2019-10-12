@@ -22,11 +22,13 @@ const Profileinfo = (props) => {
                 <div className={Class.infoWrap}>
                     <div className={Class.infoText}>
                         <h1>Name: {props.profile.fullName}</h1>
-                        {
-                            props.profile.userId === 1617
-                                ? <ProfileStatus status={"Hello"} />
-                                : <span className={`${Class.infoItemBlock}`}>About me: <span>{props.profile.aboutMe}</span></span>
-                        }
+
+                        <span className={`${Class.infoItemBlock}`}>Status: <ProfileStatus
+                            status={props.status}
+                            updateStatus={props.updateStatus}
+
+                        /></span>
+
                         <span className={`${Class.infoItemBlock}`}>looking for a job: <span>{props.profile.lookingForAJob === false ? "no" : "yes"}</span></span>
                         <span className={`${Class.infoItemBlock}`}>looking for a job description: <span>{props.profile.lookingForAJobDescription}</span></span>
                         <span className={`${Class.infoItemBlock}`}>City: Tbilisi</span>
