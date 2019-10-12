@@ -1,4 +1,4 @@
-const UPDATE_NEW_CHAT = 'UPDATE-NEW-CHAT';
+// const UPDATE_NEW_CHAT = 'UPDATE-NEW-CHAT';
 const SEND_TEXT_CHAT = 'SEND-TEXT-CHAT';
 
 let initialState = {
@@ -20,25 +20,17 @@ let initialState = {
     ],
     messages: [
         {id: 1, message: 'A normal popover and I can have text and everything.'}
-    ],
-    newChatText: 'your massage!'
+    ]
 };
 
 const dialogsReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case SEND_TEXT_CHAT:
-            let newMess = state.newChatText;
+            let newMess = action.newMessageBody;
             return {
                 ...state,
-                newChatText: '',
                 messagesMe: [...state.messagesMe, {id: 15, likeCount: 0, message: newMess}]
-            };
-
-        case UPDATE_NEW_CHAT:
-            return {
-                ...state,
-                newChatText: action.newText
             };
 
         default:
@@ -46,8 +38,8 @@ const dialogsReducer = (state = initialState, action) => {
     }
 }
 
-export const sendTextChat = () => ({type: SEND_TEXT_CHAT});
-export const updateNewChatText = (text) =>
-    ({type: UPDATE_NEW_CHAT, newText: text });
+export const sendTextChat = (newMessageBody) => ({type: SEND_TEXT_CHAT, newMessageBody});
+/*export const updateNewChatText = (text) =>
+    ({type: UPDATE_NEW_CHAT, newText: text });*/
 
 export default dialogsReducer;

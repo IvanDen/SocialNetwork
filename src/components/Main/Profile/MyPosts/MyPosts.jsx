@@ -1,23 +1,32 @@
 import React from 'react';
 import Class from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {updateNewPostText} from "../../../../redux/profile-reduser";
+// import {updateNewPostText} from "../../../../redux/profile-reduser";
+import {Field, reduxForm} from "redux-form";
 
 
+// Create a separate component for the form
+let AddNewPostForm = (props) => {
+
+    return(
+        <form onSubmit={props.handleSubmit}>
+            <Field
+                name="newPostText"
+                component="textarea" />
+            <button>Add post</button>
+        </form>
+    );
+}
+
+let AddNewPostFormRedux = reduxForm({form: "ProfileAddNewPostForm"})(AddNewPostForm);
 
 const MyPosts = (props) => {
 
     let newPostElement = React.createRef();
 
-    let onAddPost = () => {
+    let onAddPost = (values) => {
 
-        props.addPost();
-    };
-
-    let onPostChange = () => {
-        let text = newPostElement.current.value;
-
-        props.updateNewPostText(text);
+        props.addPost(values.newPostText);
     };
 
     //render post from state
@@ -26,19 +35,13 @@ const MyPosts = (props) => {
 
     return (
         <div>
-            <div>
-                <textarea
-                    onChange={onPostChange}
-                    ref={newPostElement}
-                    placeholder={"your post"}
-                    value={props.newPostText} />
-                <button className={"button"} onClick={onAddPost}>Add post</button>
-            </div>
+            <AddNewPostFormRedux onSubmit={onAddPost} />
             <div className={Class.posts}>
                 {postElement}
             </div>
         </div>
     );
 };
+
 
 export default MyPosts;

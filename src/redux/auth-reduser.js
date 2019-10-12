@@ -3,6 +3,7 @@ import {setToggleIsFetching, setUsers, setUsersTotalCount} from "./users-reduser
 import * as axios from "axios/index";
 
 const SET_USER_DATA ='SET_USER_DATA';
+const SET_AUTH_LOGIN ='SET_AUTH_LOGIN';
 
 
 let initialState = {
@@ -22,15 +23,24 @@ const authReducer = (state = initialState, action) => {
                 isAuth: true
             };
         }
+        case SET_AUTH_LOGIN: {
+            return {
+                ...state,
+                userId: action.userId
+            };
+        }
         default:
             return state;
-
     }
 }
 
 export const setAuthUserData = (userId, email, login) => ({
     type: SET_USER_DATA,
     data: {userId, email, login}
+});
+export const setAuthLogin = (userId) => ({
+    type: SET_AUTH_LOGIN,
+    userId
 });
 
 export const authUser = () => {
@@ -45,4 +55,15 @@ export const authUser = () => {
     }
 }
 
+/*export const authUserLogin = () => {
+    return (dispatch) => {
+        AuthAPI.checkAuth()
+            .then(response => {
+                if (response.resultCode === 0) {
+                    let {id,} = response.data;
+                    dispatch(setAuthLogin(id));
+                }
+            });
+    }
+}*/
 export default authReducer;

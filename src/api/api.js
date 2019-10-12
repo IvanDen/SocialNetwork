@@ -54,7 +54,13 @@ export const AuthAPI = {
             .then(response => {
                 return response.data
             });
-    },
+    }/*,
+    authLogin() {
+        return instance.post(`auth/login`,)
+            .then(response => {
+                return response.data
+            });
+    },*/
 }
 
 

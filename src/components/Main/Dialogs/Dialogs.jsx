@@ -3,6 +3,7 @@ import Class from './Dialogs.module.css';
 import People from "./People/People";
 import {Chat, ChatMy} from "./Chat/Chat";
 import {Redirect} from "react-router-dom";
+import {Field, reduxForm} from "redux-form";
 
 
 const Dialogs = (props) => {
@@ -19,25 +20,25 @@ const Dialogs = (props) => {
 //Input Value
     let newMessageElement = React.createRef();
 
-    let sendMessage = () => {
-        let text = newMessageElement.current.value;
-        if (text) {
-            props.sendTextChat();
+    let sendMessage = (values) => {
+
+        if (values) {
+            props.sendTextChat(values);
         }
         else {
             alert('enter your text!');
         }
     }
 
-    if (!props.isAuth) {
+    /*if (!props.isAuth) {
         return <Redirect to={'/login'} />
-    };
+    };*/
 
-//We control the entered text in the state
-    let onMessageChange = () => {
-        let text = newMessageElement.current.value;
-        props.updateNewChatText(text);
-    };
+    let addNewMessage = (values) => {
+        console.log(values.newMessageBody);
+
+        sendMessage(values.newMessageBody);
+    }
 
     return (
         <div className={Class.dialogsWrap}>
@@ -50,17 +51,27 @@ const Dialogs = (props) => {
             <div className={Class.chat}>
                 {messagesElement}
                 {messagesElementMe}
-                <div className={Class.sendWrap}>
-                    <textarea
-                        ref={newMessageElement}
-                        onChange={onMessageChange}
-                        placeholder={"your message"}
-                        value={state.newChatText} />
-                    <button className="button" onClick={sendMessage}>Send massage</button>
-                </div>
+                <AddMessageFormRedux onSubmit={addNewMessage} />
             </div>
         </div>
     );
 }
+
+const AddMessageForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit} className={Class.sendWrap}>
+            <Field
+                component="textarea"
+                name="newMessageBody"
+                placeholder={"your message"}
+                value={props.newChatText}/>
+
+            <button className="button">Send massage</button>
+        </form>
+    )
+}
+// Wrap our component in HOC from reduxForm
+const AddMessageFormRedux = reduxForm({form: 'dialogAddMessageForm'})(AddMessageForm);
+
 
 export default Dialogs;
