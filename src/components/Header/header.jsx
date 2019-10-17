@@ -8,9 +8,11 @@ const Header = (props) => {
             <img className={Class.logo} src={'/img/logo.png'} alt="logo"/>
             <div className={Class.loginBlock}>
                 {props.isAuth
-                    ? <span className={Class.linc}>{props.login}</span>
+                    ? <div>
+                        <span className={Class.linc}>{props.login}</span>
+                        <button onClick={props.logout}>Logout</button>
+                      </div>
                     : <NavLink className={Class.linc} to={'/login'}>Login</NavLink>}
-
             </div>
         </header>
     );

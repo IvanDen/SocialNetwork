@@ -16,5 +16,5 @@ let mapStateToProps = (state) => {
 /*На вход compose получает значение, которое будет передано в качестве аргумента для первой функции, которая в свою очередь передает результат следующей, в конечном счете compose возвращает единственное значение, результат работы всех функций.*/
 export default compose(
     connect(mapStateToProps, {sendTextChat}),
-    // withAuthRedirect
+    withAuthRedirect
 )(Dialogs);
