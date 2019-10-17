@@ -1,5 +1,6 @@
 import * as axios from "axios/index";
 
+// it is dal level
 const instance = axios.create({
     withCredentials: true,
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -54,13 +55,14 @@ export const AuthAPI = {
             .then(response => {
                 return response.data
             });
-    }/*,
-    authLogin() {
-        return instance.post(`auth/login`,)
-            .then(response => {
-                return response.data
-            });
-    },*/
+    },
+    login(email, password, rememberMe = false) {
+        return instance.post(`auth/login`, {email, password, rememberMe});
+
+    },
+    logout(email, password, rememberMe = false) {
+        return instance.delete(`auth/login`);
+    },
 }
 
 

@@ -4,6 +4,8 @@ import People from "./People/People";
 import {Chat, ChatMy} from "./Chat/Chat";
 import {Redirect} from "react-router-dom";
 import {Field, reduxForm} from "redux-form";
+import {Textarea} from "../../Common/FormsControls/FormsControls";
+import {maxLengthCreator, requiredField} from "../../../utils/validators";
 
 
 const Dialogs = (props) => {
@@ -57,13 +59,16 @@ const Dialogs = (props) => {
     );
 }
 
+// We wrap the function with the validator in a variable, pass the length of the string
+const maxLength50 = maxLengthCreator(50);
 const AddMessageForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit} className={Class.sendWrap}>
             <Field
-                component="textarea"
+                component={Textarea}
                 name="newMessageBody"
                 placeholder={"your message"}
+                validate={[requiredField, maxLength50]}
                 value={props.newChatText}/>
 
             <button className="button">Send massage</button>
