@@ -15,7 +15,6 @@ const FormControl = ({input, meta, child, element, ...props}) => {
     );
 }
 
-
 export const Textarea = (props) => {
     // Метод деструктуризации inpus, meta, ...props
     const {input, meta, child, element, ...restProps} = props;

@@ -1,2 +1,5 @@
 /*----Login----*/
 h1 {margin-bottom: 15px;}
+.formLogin {margin: 0 auto; width: 100%; max-width: 300px; align-items: center; justify-content: center; display: flex; flex-direction: column;}
+.formControl.error span {color: #FF0000;}
+.formSummaryError {border: 1px solid #FF0000; padding: 5px; color: #FF0000}

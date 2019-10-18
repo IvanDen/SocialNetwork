@@ -1,6 +1,6 @@
 import {AuthAPI, usersAPI} from "../api/api";
-import {setToggleIsFetching, setUsers, setUsersTotalCount} from "./users-reduser";
-import * as axios from "axios/index";
+import {stopSubmit} from "redux-form";
+
 
 const SET_USER_DATA ='SET_USER_DATA';
 const SET_AUTH_LOGIN ='SET_AUTH_LOGIN';
@@ -59,8 +59,12 @@ export const login = (email, password, rememberMe) => (dispatch) => {
     //thank
     AuthAPI.login(email, password, rememberMe)
         .then(response => {
-            if (response.resultCode === 0) {
+            if (response.data.resultCode === 0) {
                 dispatch(authUser());
+            }
+            else {
+                let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error";
+                dispatch(stopSubmit("login", {_error: message}));
             }
         });
 }
@@ -69,7 +73,7 @@ export const login = (email, password, rememberMe) => (dispatch) => {
 export const logout = () => (dispatch) => {
     AuthAPI.logout()
         .then(response => {
-            if (response.resultCode === 0) {
+            if (response.data.resultCode === 0) {
                 dispatch(authUser(null, null, null, false));
             }
         });

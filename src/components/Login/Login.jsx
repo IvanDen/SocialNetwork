@@ -1,5 +1,6 @@
 import React from 'react';
-import Class from './Login.module.css';
+import Styles from './Login.module.css';
+
 import {connect} from "react-redux";
 import {Field, reduxForm} from "redux-form";
 import {Input} from "../Common/FormsControls/FormsControls";
@@ -11,15 +12,16 @@ import {Redirect} from "react-router-dom";
 const maxLength30 = maxLengthCreator(30);
 const LoginForm = (props) => {
     return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
+        <form onSubmit={props.handleSubmit} className={Styles.formLogin}>
+            <h1>Login</h1>
+            <div className={Styles.emailInput}>
                 <Field
                     placeholder={"Email"}
                     name={"email"}
                     component={Input}
                     validate={[requiredField, maxLength30]} />
             </div>
-            <div>
+            <div className={Styles.passwInput}>
                 <Field
                     placeholder={"Password"}
                     type={"password"}
@@ -32,8 +34,11 @@ const LoginForm = (props) => {
                     component={Input}
                     name={"rememberMe"}
                     type={"checkbox"}
-                    validate={[requiredField, maxLength30]} />
+                     />
             </div>
+            {props.error && <div className={Styles.formSummaryError}>
+                {props.error}
+            </div>}
             <div>
                 <button>Login</button>
             </div>
@@ -54,7 +59,6 @@ const Login = (props) => {
 
     return (
         <div>
-            <h1>Login</h1>
             <LoginReduxForm onSubmit={onSubmit} />
         </div>
     );
