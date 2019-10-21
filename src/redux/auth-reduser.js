@@ -42,17 +42,16 @@ export const setAuthLogin = (userId) => ({
     userId
 });
 
-export const authUser = () => {
-    return (dispatch) => {
-        AuthAPI.checkAuth()
+export const authUser = () => (dispatch) => {
+        return AuthAPI.checkAuth()
             .then(response => {
                 if (response.resultCode === 0) {
                     let {id, email, login} = response.data;
                     dispatch(setAuthUserData(id, email, login, true));
                 }
-            });
-    }
+        });
 }
+
 
 //thank creator
 export const login = (email, password, rememberMe) => (dispatch) => {
