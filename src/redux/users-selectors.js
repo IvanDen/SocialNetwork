@@ -1,6 +1,14 @@
-export const getUsersPage = (state) => {
+import {createSelector} from "reselect";
+
+// select is a function that takes a state and returns a value.
+// We necessary reselect lib (function createSelector)
+export const getUsersSelector = (state) => {//simple select
     return state.usersPage.users;
 }
+
+export const getUsersPage = createSelector(getUsersSelector, (users) => {
+    return users.filter(u => true);
+});
 
 export const getPageSize = (state) => {
     return state.usersPage.pageSize;
