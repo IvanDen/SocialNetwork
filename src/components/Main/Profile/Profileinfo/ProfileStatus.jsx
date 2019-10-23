@@ -29,6 +29,7 @@ class ProfileStatus extends React.Component {
            status: e.currentTarget.value
         })
     }
+    // метод жизненого цикла componentDidUpdate
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.status !== this.props.status) {
             this.setState({
