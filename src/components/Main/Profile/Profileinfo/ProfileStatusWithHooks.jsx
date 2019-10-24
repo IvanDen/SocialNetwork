@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Class from './Profileinfo.module.css';
 import Profileinfo from "./Profileinfo";
 
@@ -12,6 +12,10 @@ const ProfileStatusWithHooks = (props) => {
     // destructuring assignment - [a, b] = [10, 20]
     let [editMod, setEditMod] = useState(false);
     let [status, setStatus] = useState(props.status);
+
+    useEffect(() => {
+        setStatus(props.status);
+    }, [props.status]);
 
     const activateEditMode = () => {
         setEditMod(true);
