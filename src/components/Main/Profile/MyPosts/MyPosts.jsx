@@ -42,7 +42,9 @@ const MyPosts = React.memo(props => {
 
     //render post from state
     let postElement =
-        props.posts.map( post => <Post message={post.message} key={post.id} likeCount={post.likeCount}/> );
+        [...props.posts]
+            .reverse()
+            .map( post => <Post message={post.message} key={post.id} likeCount={post.likeCount}/> );
 
     return (
         <div>
