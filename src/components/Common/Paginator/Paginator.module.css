@@ -1,0 +1,7 @@
+
+.pageList {display: flex; width: 100%; margin: 20px 0;  flex-wrap: wrap;}
+.pageList span {margin: 0 10px; cursor: pointer;}
+.pageList span:hover {opacity: 0.5;}
+.selectedPage {font-weight: bold;}
+
+

@@ -3,3 +3,7 @@
 .friendsWrap .bestFriends {width: 80%; display: flex; justify-content: space-between;}
 .friendsWrap .bestFriends .itemFriends {display: flex; flex-direction: column; flex-shrink: 0; align-items: center; color: #ffffff;}
 .friendsWrap .bestFriends .itemFriends img {width: 50px; ;  border-radius: 50%; background: #FFC82C; margin-bottom: 10px;}
+
+@media screen and (max-width: 1080px) {
+	.friendsWrap .bestFriends {flex-direction: column;}
+}

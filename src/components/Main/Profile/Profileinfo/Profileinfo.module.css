@@ -3,11 +3,12 @@ h1 {margin: 0;}
 .mainImg {width: 100%;}
 .mainImg img {height: 224px; width: 100%;}
 .userInfo {display: flex;}
-.userInfo .avatar {width: 174px; height: 164px;}
+.userInfo .avatar {width: 174px; height: 164px; border-radius: 50%;}
 
-.infoWrap {display: flex; justify-content: space-between;}
-.infoText {display: flex; flex-direction: column; margin: 0 20px;}
-.infoText span {margin-top: 10px;}
+.avaWrap {}
+.infoWrap {display: flex; justify-content: end; width: 100%;}
+.info {display: flex; flex-direction: column; margin: 0 20px;  max-width: 33%;}
+.info span {margin-top: 10px;}
 .infoItemBlock {font-weight: bold;}
 .infoItemBlock span {font-weight: normal;}
 

@@ -1,4 +1,4 @@
-.formControl {max-width: 300px; width: 100%;}
+.formControl {width: 100%;}
 
 .formControl.error .inputWrap input, .formControl.error .inputWrap textarea {border: 3px solid #FF0000;}
 .formControl.error span {color: #FF0000;}
