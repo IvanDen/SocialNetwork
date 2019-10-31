@@ -1,11 +1,10 @@
 import React from 'react';
-import Class from './navbar.module.css';
+import Class from './FooterNavLink.module.css';
 import {NavLink} from "react-router-dom";
-import Best from "./bestfriends/Best";
 
-const Navbar = () => {
+const FooterNavLink = () => {
     return (
-        <nav className={Class.navSide}>
+        <nav className={Class.footerNav}>
             <div className={`${Class.item} ${Class.active}`}>
                 <NavLink to="/profile" activeClassName={Class.active}>Profile</NavLink>
             </div>
@@ -24,9 +23,8 @@ const Navbar = () => {
             <div className={Class.item}>
                 <NavLink to="/settings" activeClassName={Class.active}>Settings</NavLink>
             </div>
-            <Best />
         </nav>
     );
 }
 
-export default Navbar;
+export default FooterNavLink;

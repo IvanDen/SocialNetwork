@@ -1,1 +1,2 @@
-footer {grid-area: foo; background: #374140; width: 100%;}
+footer {grid-area: foo; background: #374140; width: 100%; padding: 10px; border-radius: 15px 15px 0 0;}
+.contentWrap {display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto;}
