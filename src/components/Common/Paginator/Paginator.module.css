@@ -1,7 +1,8 @@
-
-.pageList {display: flex; width: 100%; margin: 20px 0;  flex-wrap: wrap;}
-.pageList span {margin: 0 10px; cursor: pointer;}
+.paginatorWrap {display: flex; justify-content: center; width: 520px;}
+.pageList {width: 100%; margin: 20px 0; display: flex;}
+.pageList span {display: flex; align-items: center; justify-content: center; margin: 0 5px; cursor: pointer; min-width: 30px; border: 1px solid #000508;}
 .pageList span:hover {opacity: 0.5;}
-.selectedPage {font-weight: bold;}
+.selectedPage {font-weight: bold; color: #ffffff; background: #000508; box-shadow: 0 0 14px 1px rgba(0, 0, 0, 0.8);}
+.disabled:disabled {}
 
 
