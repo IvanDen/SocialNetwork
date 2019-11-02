@@ -34,12 +34,17 @@ let Useritem = ({user, followingInProgress, unfollow, follow}) => {
             </div>
             <div className={styles.usersInfo}>
                 <div className={styles.nameAndStatus}>
-                    <span>{user.name}</span>
-                    <span className={styles.userStatus}>{user.status}</span>
-                </div>
-                <div>
-                    <span>{"user.location.country"}</span>
-                    <span>{"user.location.city"}</span>
+                    <div className={styles.usersMainInfo}>
+                        <span className={styles.headInfo}>User name: </span>
+                        <span >{user.name}</span>
+                    </div>
+                    <div className={`${styles.usersMainInfo} ${styles.userStatus}`}>
+                        <span className={styles.headInfo}>Users status: </span>
+                        {user.status
+                            ? <span>{user.status}</span>
+                            : <span>--------</span>
+                        }
+                    </div>
                 </div>
             </div>
         </div>

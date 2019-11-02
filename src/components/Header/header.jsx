@@ -6,9 +6,7 @@ import Logo from "../Common/Logo/Logo";
 const Header = (props) => {
     return (
         <header>
-
             <Logo />
-
             <div className={Class.loginBlock}>
                 {props.isAuth
                     ? <div className={Class.userNameWrap}>

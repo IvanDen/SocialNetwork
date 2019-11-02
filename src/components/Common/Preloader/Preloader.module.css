@@ -1,0 +1,3 @@
+.wrap {position: relative; width: 100%; height: 100%;}
+.loadingWap {width: 441px; height: 291px; position: absolute; left: 0; right: 0; margin: 0 auto; top: 50%; transform: translate(0, -50%);}
+

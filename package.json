@@ -36,6 +36,8 @@
     ]
   },
   "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb": "^18.0.1",
     "react-test-renderer": "^16.8.6"
   }
 }

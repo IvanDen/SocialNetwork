@@ -15,14 +15,16 @@ let Users = ({currentPage, totalUsersCount, pageSize, onPageChanged, users, ...p
                        onPageChanged={onPageChanged}
                        totalUsersCount={totalUsersCount}
                        pageSize={pageSize} />
+            <div className={styles.usersList} >
+                {users.map(user => <Useritem
+                    user={user}
+                    key={user.id}
+                    followingInProgress={props.followingInProgress}
+                    unfollow={props.unfollow}
+                    follow={props.follow}
+                /> )}
+            </div>
 
-            {users.map(user => <Useritem
-                user={user}
-                key={user.id}
-                followingInProgress={props.followingInProgress}
-                unfollow={props.unfollow}
-                follow={props.follow}
-            /> )}
         </section>
     )
 }
