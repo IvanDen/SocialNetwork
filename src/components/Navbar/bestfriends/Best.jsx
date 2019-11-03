@@ -8,15 +8,15 @@ const Best = () => {
             <span className={Class.title}>Friends</span>
             <div className={Class.bestFriends}>
                 <div className={Class.itemFriends}>
-                    <img src={'/img/posts-user.png'} alt={"ava"}/>
+                    <img src={'./img/posts-user.png'} alt={"ava"}/>
                     <span>Lilia</span>
                 </div>
                 <div className={Class.itemFriends}>
-                    <img src={'/img/posts-user.png'} alt={"ava"}/>
+                    <img src={'./img/posts-user.png'} alt={"ava"}/>
                     <span>Dima</span>
                 </div>
                 <div className={Class.itemFriends}>
-                    <img src={'/img/posts-user.png'} alt={"ava"}/>
+                    <img src={'./img/posts-user.png'} alt={"ava"}/>
                     <span>Misha</span>
                 </div>
             </div>
