@@ -6,12 +6,9 @@ import News from "./components/Main/News/News";
 import Music from "./components/Main/Music/Music";
 import Settings from "./components/Main/Settings/Settings";
 import Footer from "./components/Footer/footer";
-import {BrowserRouter, Route, withRouter} from "react-router-dom";
-//import DialogsContainer from "./components/Main/Dialogs/DialogsContainer";
-//import ProfileContainer from "./components/Main/Profile/ProfileContainer";
+import {HashRouter, Route, withRouter} from "react-router-dom";
 import UsersContainer from "./components/Main/Users/UsersContainer";
 import HeaderContainer from "./components/Header/headerContainer";
-// import Login from "./components/Login/Login";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import Preloader from "./components/Common/Preloader/Preloader";
@@ -63,11 +60,11 @@ let AppContainer =  compose(
 
 const SocialApp = (props) => {
     return (
-        <BrowserRouter>
+        <HashRouter basename={process.env.PUBLIC_URL}>
             <Provider store={store}>
                 <AppContainer />
             </Provider>
-        </BrowserRouter>
+        </HashRouter>
     );
 }
 
