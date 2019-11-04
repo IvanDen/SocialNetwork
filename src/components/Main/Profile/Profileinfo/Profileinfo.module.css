@@ -13,7 +13,7 @@ h1 {margin: 0;}
 .infoItemBlock span {font-weight: normal;}
 
 .contactsItem {display: flex; width: 100%; align-items: center; margin: 10px 0;}
-.imgSocial {background: url('../../../../img/sicial-preview.png') no-repeat; width: 26px; height: 26px; display: block; flex-shrink: 0; margin-right: 15px; filter: invert(45%) sepia(71%) saturate(631%) hue-rotate(106deg) brightness(100%) contrast(101%);}
+.imgSocial {background: url('../../../../img/sicial-preview.png') no-repeat; width: 26px; height: 26px; display: block; flex-shrink: 0; margin-right: 15px;}
 .imgSocial.facebook {background-position-x: -9px; background-position-y: -9px;}
 .imgSocial.website {background-position-x: -279px; background-position-y: -219px;}
 .imgSocial.imgSocial.vk {background-position-x: -129px; background-position-y: -9px;}

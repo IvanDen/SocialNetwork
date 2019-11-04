@@ -12,17 +12,18 @@ const Profileinfo = ({profile, status, updateStatus, ...props}) => {
     }
     return (
         <div>
-            {/*<div className={Class.mainImg}>
-                <img src={'./img/content-img.jpg'} alt="" className="main-img"/>
-            </div>*/}
             <div className={Class.userInfo}>
 
                 <div className={`${Class.infoWrap}`}>
                     <div className={`${Class.info} ${Class.avaWrap}`}>
-                        <img className={Class.avatar} src={
-                            profile.photos.large != null
-                                ? profile.photos.small
-                                : "./img/myAvatar.png"} alt="avatar" />
+
+                        {profile.userId != 1617
+                            ? profile.photos.large != null
+                                ? <img className={Class.avatar} src={profile.photos.large} alt="avatar" />
+                                : <img className={Class.avatar} src={profile.photos.small != null ? profile.photos.small : "./img/list-users.png"} alt="avatar" />
+                            : <img className={Class.avatar} src={"./img/myAvatar.png"} alt="avatar" />
+                        }
+
                     </div>
                     <div className={`${Class.info}  ${Class.ownInfo}`}>
                         <h1>Name: {profile.fullName}</h1>
@@ -39,9 +40,9 @@ const Profileinfo = ({profile, status, updateStatus, ...props}) => {
                         <span className={`${Class.infoItemBlock}`}>
                             looking for a job description: <span>{profile.lookingForAJobDescription}</span>
                         </span>
-                        <span className={`${Class.infoItemBlock}`}>City: Tbilisi</span>
-                        <span className={`${Class.infoItemBlock}`}>Education: BSU '11</span>
-                        <span className={`${Class.infoItemBlock}`}>Web Site: https://it-kamasutra.com</span>
+                        <span className={`${Class.infoItemBlock}`}>City: {profile.city ? profile.city : "-----"}</span>
+                        <span className={`${Class.infoItemBlock}`}>Education: {profile.education ? profile.education : "-----"}</span>
+                        <span className={`${Class.infoItemBlock}`}>Web Site: {profile.site ? profile.site : "-----"}</span>
                     </div>
                     <div className={`${Class.info} ${Class.socialsLincs}`}>
                         <h2>Contacts</h2>

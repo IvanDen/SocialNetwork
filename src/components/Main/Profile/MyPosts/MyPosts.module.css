@@ -1,2 +1,4 @@
-.posts {color: #000;}
-.formWrap {display: flex;}
+.postsFeed {width: 100%; display: flex; flex-direction: column; align-items: center; margin: 0 auto;}
+.postForm {margin-bottom: 15px; width: 50%; min-width: 360px; background: #767979; padding: 20px; border-radius: 20px; box-shadow: inset 0 0 10px 4px #000508, 0 0 10px 4px #000508;}
+.posts {color: #000; width: 50%; min-width: 360px;}
+.formWrap {display: flex; width: 100%;}

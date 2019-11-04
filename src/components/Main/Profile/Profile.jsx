@@ -1,12 +1,12 @@
 import React from 'react';
-
+import Class from './profile.module.css';
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import Profileinfo from "./Profileinfo/Profileinfo";
 
 const Profile = (props) => {
 
     return (
-        <div>
+        <div className={Class.profilePageWrap}>
             <Profileinfo
                 profile={props.profile}
                 status={props.status}

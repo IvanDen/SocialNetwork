@@ -11,11 +11,9 @@ const maxLength10 = maxLengthCreator(30);
 let AddNewPostForm = (props) => {
 
     return(
-        <form onSubmit={props.handleSubmit}>
-            <div className={Class.formWrap}>
+        <form className={Class.postForm} onSubmit={props.handleSubmit}>
                 {createField("Post message", "newPostText", Textarea, [requiredField, maxLength10])}
-                <button>Add post</button>
-            </div>
+            <button>Add post</button>
         </form>
     );
 }
@@ -45,7 +43,7 @@ const MyPosts = React.memo(props => {
             .map( post => <Post message={post.message} key={post.id} likeCount={post.likeCount}/> );
 
     return (
-        <div>
+        <div className={Class.postsFeed}>
             <AddNewPostFormRedux onSubmit={onAddPost} />
             <div className={Class.posts}>
                 {postElement}
