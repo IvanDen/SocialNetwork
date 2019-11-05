@@ -5,7 +5,28 @@ h1 {margin: 0;}
 .userInfo {display: flex;}
 .userInfo .avatar {width: 174px; height: 164px; border-radius: 50%;}
 
-.avaWrap {}
+.avaWrap {width: 100%;}
+.avaWrap .imgWrap {width: 175px;}
+.inputFileWrap {width: 100%; position: relative;}
+.inputFile {width: 0.1px; height: 0.1px; opacity: 0; overflow: hidden; position: absolute; z-index: 1;}
+
+.inputFile + label {
+	font-size: 1.25em;
+	font-weight: 700;
+	color: white;
+	background-color: black;
+	display: inline-block;
+	cursor: pointer; /* "hand" cursor */
+}
+.inputFile:focus + label,
+.inputFile + label:hover {
+	background-color: red;
+}
+.inputfile:focus + label {
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+
 
 .infoWrap {display: flex; justify-content: end; width: 100%;}
 .info {display: flex; flex-direction: column; margin: 0 20px;  max-width: 33%;}

@@ -6,34 +6,46 @@ import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 
 
-const Profileinfo = ({profile, status, updateStatus, ...props}) => {
+const Profileinfo = ({profile, status, updateStatus, isOwner, savePhoto}) => {
     if (!profile){
         return <Preloader />
     }
+
+    const onMainPhotosSelected = (e) => {
+
+        if (e.target.files.length) {
+            savePhoto(e.target.files[0]);
+        }
+    }
+
     return (
         <div>
             <div className={Class.userInfo}>
-
                 <div className={`${Class.infoWrap}`}>
                     <div className={`${Class.info} ${Class.avaWrap}`}>
-
-                        {profile.userId != 1617
-                            ? profile.photos.large != null
-                                ? <img className={Class.avatar} src={profile.photos.large} alt="avatar" />
-                                : <img className={Class.avatar} src={profile.photos.small != null ? profile.photos.small : "./img/list-users.png"} alt="avatar" />
-                            : <img className={Class.avatar} src={"./img/myAvatar.png"} alt="avatar" />
+                        <div className={Class.imgWrap}>
+                            <img className={Class.avatar} src={profile.photos.large || "./img/list-users.png"} alt="avatar" />
+                        </div>
+                        {isOwner &&
+                            <div className={Class.inputFileWrap}>
+                                <input
+                                    type={"file"}
+                                    id={"avatarImage"}
+                                    className={Class.inputFile}
+                                    onChange={onMainPhotosSelected} />
+                                <label htmlFor={"avatarImage"}>Choose a file</label>
+                            </div>
                         }
 
                     </div>
                     <div className={`${Class.info}  ${Class.ownInfo}`}>
                         <h1>Name: {profile.fullName}</h1>
-
                         <span className={`${Class.infoItemBlock}`}>
                             Status: <ProfileStatusWithHooks
                             status={status}
-                            updateStatus={updateStatus} />
+                            updateStatus={updateStatus}
+                            isOwner={isOwner}/>
                         </span>
-
                         <span className={`${Class.infoItemBlock}`}>
                             looking for a job: <span>{profile.lookingForAJob === false ? "no" : "yes"}</span>
                         </span>
