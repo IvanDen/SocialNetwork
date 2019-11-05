@@ -48,44 +48,60 @@ const Profileinfo = ({profile, status, updateStatus, ...props}) => {
                         <h2>Contacts</h2>
                         <div className={`${Class.infoItemBlock}`}>
                             <div className={Class.contactsItem}>
-                                <span className={`${Class.imgSocial} ${Class.facebook}`}></span>
-                                <span className={Class.item}>Facebook: </span>
-                                <span>{profile.contacts.facebook}</span>
+                                <div className={Class.imgTitle}>
+                                    <span className={`${Class.imgSocial} ${Class.facebook}`}></span>
+                                    <span className={Class.item}>Facebook: </span>
+                                </div>
+                                <span className={Class.contactsVal}>{profile.contacts.facebook}</span>
                             </div>
                             <div className={Class.contactsItem}>
-                                <span className={`${Class.imgSocial} ${Class.website}`}></span>
-                                <span className={Class.item}>Website: </span>
-                                <span>{profile.contacts.website}</span>
+                                <div className={Class.imgTitle}>
+                                    <span className={`${Class.imgSocial} ${Class.website}`}></span>
+                                    <span className={Class.item}>Website: </span>
+                                </div>
+                                <span className={Class.contactsVal}>{profile.contacts.website}</span>
                             </div>
                             <div className={Class.contactsItem}>
-                                <span className={`${Class.imgSocial} ${Class.vk}`}></span>
-                                <span className={Class.item}>VK: </span>
-                                <span>{profile.contacts.vk}</span>
+                                <div className={Class.imgTitle}>
+                                    <span className={`${Class.imgSocial} ${Class.vk}`}></span>
+                                    <span className={Class.item}>VK: </span>
+                                </div>
+                                <span className={Class.contactsVal}>{profile.contacts.vk}</span>
                             </div>
                             <div className={Class.contactsItem}>
-                                <span className={`${Class.imgSocial} ${Class.twitter}`}></span>
-                                <span className={Class.item}>Twitter: </span>
-                                <span>{profile.contacts.twitter}</span>
+                                <div className={Class.imgTitle}>
+                                    <span className={`${Class.imgSocial} ${Class.twitter}`}></span>
+                                    <span className={Class.item}>Twitter: </span>
+                                </div>
+                                <span className={Class.contactsVal}>{profile.contacts.twitter}</span>
                             </div>
                             <div className={Class.contactsItem}>
-                                <span className={`${Class.imgSocial} ${Class.instagram}`}></span>
-                                <span className={Class.item}>Instagram: </span>
-                                <span>{profile.contacts.instagram}</span>
+                                <div className={Class.imgTitle}>
+                                    <span className={`${Class.imgSocial} ${Class.instagram}`}></span>
+                                    <span className={Class.item}>Instagram: </span>
+                                </div>
+                                <span className={Class.contactsVal}>{profile.contacts.instagram}</span>
                             </div>
                             <div className={Class.contactsItem}>
-                                <span className={`${Class.imgSocial} ${Class.youtube}`}></span>
-                                <span className={Class.item}>Youtube: </span>
-                                <span>{profile.contacts.youtube}</span>
+                                <div className={Class.imgTitle}>
+                                    <span className={`${Class.imgSocial} ${Class.youtube}`}></span>
+                                    <span className={Class.item}>Youtube: </span>
+                                </div>
+                                <span className={Class.contactsVal}>{profile.contacts.youtube}</span>
                             </div>
                             <div className={Class.contactsItem}>
-                                <span className={`${Class.imgSocial} ${Class.github}`}></span>
-                                <span className={Class.item}>Github: </span>
-                                <span>{profile.contacts.github}</span>
+                                <div className={Class.imgTitle}>
+                                    <span className={`${Class.imgSocial} ${Class.github}`}></span>
+                                    <span className={Class.item}>Github: </span>
+                                </div>
+                                <span className={Class.contactsVal}>{profile.contacts.github}</span>
                             </div>
                             <div className={Class.contactsItem}>
-                                <span className={`${Class.imgSocial} ${Class.mainLink}`}></span>
-                                <span className={Class.item}>MainLink: </span>
-                                <span>{profile.contacts.mainLink}</span>
+                                <div className={Class.imgTitle}>
+                                    <span className={`${Class.imgSocial} ${Class.mainLink}`}></span>
+                                    <span className={Class.item}>MainLink: </span>
+                                </div>
+                                <span className={Class.contactsVal}>{profile.contacts.mainLink}</span>
                             </div>
                         </div>
                     </div>

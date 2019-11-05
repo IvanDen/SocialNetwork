@@ -6,14 +6,18 @@ h1 {margin: 0;}
 .userInfo .avatar {width: 174px; height: 164px; border-radius: 50%;}
 
 .avaWrap {}
+
 .infoWrap {display: flex; justify-content: end; width: 100%;}
 .info {display: flex; flex-direction: column; margin: 0 20px;  max-width: 33%;}
-.info span {margin-top: 10px;}
-.infoItemBlock {font-weight: bold;}
-.infoItemBlock span {font-weight: normal;}
 
-.contactsItem {display: flex; width: 100%; align-items: center; margin: 10px 0;}
-.imgSocial {background: url('../../../../img/sicial-preview.png') no-repeat; width: 26px; height: 26px; display: block; flex-shrink: 0; margin-right: 15px;}
+.infoItemBlock {font-weight: bold;}
+
+.contactsVal {font-weight: normal; margin-left: 33px;}
+
+.contactsItem {display: flex; flex-direction: column; width: 100%; margin: 10px 0;}
+.imgTitle {display: flex; align-items: center;}
+.imgSocial {background: url('../../../../img/sicial-preview.png') no-repeat; width: 26px; height: 26px; display: block; flex-shrink: 0; margin-right: 7px;}
+
 .imgSocial.facebook {background-position-x: -9px; background-position-y: -9px;}
 .imgSocial.website {background-position-x: -279px; background-position-y: -219px;}
 .imgSocial.imgSocial.vk {background-position-x: -129px; background-position-y: -9px;}
