@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import Class from './Profileinfo.module.css';
-import Profileinfo from "./Profileinfo";
+
 
 
 

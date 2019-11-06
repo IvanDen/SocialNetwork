@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Class from './Profileinfo.module.css';
 import Preloader from "../../../Common/Preloader/Preloader";
 import ProfileStatus from "./ProfileStatus";
@@ -7,10 +7,10 @@ import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 
 const Profileinfo = ({profile, status, updateStatus, isOwner, savePhoto}) => {
+    let [editMode, ] = useState()
     if (!profile){
         return <Preloader />
     }
-
     const onMainPhotosSelected = (e) => {
 
         if (e.target.files.length) {
@@ -24,7 +24,9 @@ const Profileinfo = ({profile, status, updateStatus, isOwner, savePhoto}) => {
                 <div className={`${Class.infoWrap}`}>
                     <div className={`${Class.info} ${Class.avaWrap}`}>
                         <div className={Class.imgWrap}>
-                            <img className={Class.avatar} src={profile.photos.large || "./img/list-users.png"} alt="avatar" />
+                            <img className={Class.avatar}
+                                 src={profile.photos.large || "./img/list-users.png"}
+                                 alt="avatar" />
                         </div>
                         {isOwner &&
                             <div className={Class.inputFileWrap}>
@@ -36,91 +38,92 @@ const Profileinfo = ({profile, status, updateStatus, isOwner, savePhoto}) => {
                                 <label htmlFor={"avatarImage"}>Choose a file</label>
                             </div>
                         }
-
                     </div>
-                    <div className={`${Class.info}  ${Class.ownInfo}`}>
-                        <h1>Name: {profile.fullName}</h1>
-                        <span className={`${Class.infoItemBlock}`}>
-                            Status: <ProfileStatusWithHooks
+                    {editMode
+                        ? <ProfileInfoForm
+                            profile={profile}
                             status={status}
                             updateStatus={updateStatus}
                             isOwner={isOwner}/>
-                        </span>
-                        <span className={`${Class.infoItemBlock}`}>
-                            looking for a job: <span>{profile.lookingForAJob === false ? "no" : "yes"}</span>
-                        </span>
-                        <span className={`${Class.infoItemBlock}`}>
-                            looking for a job description: <span>{profile.lookingForAJobDescription}</span>
-                        </span>
-                        <span className={`${Class.infoItemBlock}`}>City: {profile.city ? profile.city : "-----"}</span>
-                        <span className={`${Class.infoItemBlock}`}>Education: {profile.education ? profile.education : "-----"}</span>
-                        <span className={`${Class.infoItemBlock}`}>Web Site: {profile.site ? profile.site : "-----"}</span>
-                    </div>
+                        : <ProfileMainInfo
+                            profile={profile}
+                            status={status}
+                            updateStatus={updateStatus}
+                            isOwner={isOwner} />}
                     <div className={`${Class.info} ${Class.socialsLincs}`}>
                         <h2>Contacts</h2>
                         <div className={`${Class.infoItemBlock}`}>
-                            <div className={Class.contactsItem}>
-                                <div className={Class.imgTitle}>
-                                    <span className={`${Class.imgSocial} ${Class.facebook}`}></span>
-                                    <span className={Class.item}>Facebook: </span>
-                                </div>
-                                <span className={Class.contactsVal}>{profile.contacts.facebook}</span>
-                            </div>
-                            <div className={Class.contactsItem}>
-                                <div className={Class.imgTitle}>
-                                    <span className={`${Class.imgSocial} ${Class.website}`}></span>
-                                    <span className={Class.item}>Website: </span>
-                                </div>
-                                <span className={Class.contactsVal}>{profile.contacts.website}</span>
-                            </div>
-                            <div className={Class.contactsItem}>
-                                <div className={Class.imgTitle}>
-                                    <span className={`${Class.imgSocial} ${Class.vk}`}></span>
-                                    <span className={Class.item}>VK: </span>
-                                </div>
-                                <span className={Class.contactsVal}>{profile.contacts.vk}</span>
-                            </div>
-                            <div className={Class.contactsItem}>
-                                <div className={Class.imgTitle}>
-                                    <span className={`${Class.imgSocial} ${Class.twitter}`}></span>
-                                    <span className={Class.item}>Twitter: </span>
-                                </div>
-                                <span className={Class.contactsVal}>{profile.contacts.twitter}</span>
-                            </div>
-                            <div className={Class.contactsItem}>
-                                <div className={Class.imgTitle}>
-                                    <span className={`${Class.imgSocial} ${Class.instagram}`}></span>
-                                    <span className={Class.item}>Instagram: </span>
-                                </div>
-                                <span className={Class.contactsVal}>{profile.contacts.instagram}</span>
-                            </div>
-                            <div className={Class.contactsItem}>
-                                <div className={Class.imgTitle}>
-                                    <span className={`${Class.imgSocial} ${Class.youtube}`}></span>
-                                    <span className={Class.item}>Youtube: </span>
-                                </div>
-                                <span className={Class.contactsVal}>{profile.contacts.youtube}</span>
-                            </div>
-                            <div className={Class.contactsItem}>
-                                <div className={Class.imgTitle}>
-                                    <span className={`${Class.imgSocial} ${Class.github}`}></span>
-                                    <span className={Class.item}>Github: </span>
-                                </div>
-                                <span className={Class.contactsVal}>{profile.contacts.github}</span>
-                            </div>
-                            <div className={Class.contactsItem}>
-                                <div className={Class.imgTitle}>
-                                    <span className={`${Class.imgSocial} ${Class.mainLink}`}></span>
-                                    <span className={Class.item}>MainLink: </span>
-                                </div>
-                                <span className={Class.contactsVal}>{profile.contacts.mainLink}</span>
-                            </div>
+
+                            {//Via Object we generate contacts
+                                Object.keys(profile.contacts).map(key => {
+                                return <Contact key={key} classNameIcon={key} contactTitle={key} contactValue={profile.contacts[key]}/>
+                            })}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     );
+}
+// Create a separate component for contacts
+const Contact = ({contactTitle, contactValue, classNameIcon}) => {
+    return (
+        <div className={Class.contactsItem}>
+            <div className={Class.imgTitle}>
+                <span className={`${Class.imgSocial} ${Class[classNameIcon]}`}></span>
+                <span className={Class.item}>{contactTitle}</span>
+            </div>
+            <span className={Class.contactsVal}>{contactValue}</span>
+        </div>
+    )
+}
+
+//We also create a separate component for the main user information
+const ProfileMainInfo = ({profile, status, updateStatus, isOwner, goToEditMode}) => {
+    return (
+        <div className={`${Class.info}  ${Class.ownInfo}`}>
+            {isOwner &&
+                <div>
+                    <button onClick={goToEditMode}>Edit profile</button>
+                </div>
+            }
+            <h1>Name: {profile.fullName}</h1>
+            <div className={`${Class.infoItemBlock}`}>
+                <span>Status:</span>
+                <ProfileStatusWithHooks
+                    status={status}
+                    updateStatus={updateStatus}
+                    isOwner={isOwner}/>
+            </div>
+            <div className={`${Class.infoItemBlock}`}>
+                <span>looking for a job:</span>
+                <span>{profile.lookingForAJob ? "yes" : "no"}</span>
+            </div>
+            {//If you are not looking for work then do not show the description of the skill
+                profile.lookingForAJob &&
+                    <div className={`${Class.infoItemBlock}`}>
+                        <span>My professional skills:</span>
+                        <span>{profile.lookingForAJobDescription}</span>
+                    </div>
+            }
+            <div className={`${Class.infoItemBlock}`}>
+                <span>City:</span>
+                <span>{profile.city ? profile.city : "-----"}</span>
+            </div>
+            <div className={`${Class.infoItemBlock}`}>
+                <span>Education:</span>
+                <span>{profile.education ? profile.education : "-----"}</span>
+            </div>
+            <div className={`${Class.infoItemBlock}`}>
+                <span>Web Site:</span>
+                <span>{profile.site ? profile.site : "-----"}</span>
+            </div>
+        </div>
+    )
+}
+
+const ProfileInfoForm = ({isOwner}) => {
+
 }
 
 export default Profileinfo;

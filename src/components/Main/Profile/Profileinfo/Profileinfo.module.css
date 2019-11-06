@@ -20,7 +20,7 @@ h1 {margin: 0;}
 }
 .inputFile:focus + label,
 .inputFile + label:hover {
-	background-color: red;
+	background-color: #767979;
 }
 .inputfile:focus + label {
 	outline: 1px dotted #000;
