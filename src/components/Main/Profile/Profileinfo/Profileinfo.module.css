@@ -1,11 +1,16 @@
 /*----profile----*/
 h1 {margin: 0;}
+.infoWrap {display: flex; justify-content: end; width: 100%;}
+.info {display: flex; flex-direction: column; align-items: center; width: 100%;}
+
 .mainImg {width: 100%;}
 .mainImg img {height: 224px; width: 100%;}
-.userInfo {display: flex;}
+.userInfo {display: flex; flex-direction: column; width: 90%; align-items: center; background: #767979; padding: 20px; border-radius: 20px; box-shadow: inset 0 0 10px 4px #000508, 0 0 10px 4px #000508;}
 .userInfo .avatar {width: 174px; height: 164px; border-radius: 50%;}
 
-.avaWrap {width: 100%;}
+.info .avaWrap {max-width: 100%;}
+.info .ownInfo {max-width: 100%;}
+
 .avaWrap .imgWrap {width: 175px;}
 .inputFileWrap {width: 100%; position: relative;}
 .inputFile {width: 0.1px; height: 0.1px; opacity: 0; overflow: hidden; position: absolute; z-index: 1;}
@@ -22,16 +27,14 @@ h1 {margin: 0;}
 .inputFile + label:hover {
 	background-color: #767979;
 }
-.inputfile:focus + label {
-	outline: 1px dotted #000;
-	outline: -webkit-focus-ring-color auto 5px;
-}
+.inputfile:focus + label {outline: 1px dotted #000; outline: -webkit-focus-ring-color auto 5px;}
+.socialLinks {}
 
+/*Profile form*/
+.formSummaryError {border: 1px solid #923737; padding: 5px; color: #923737; border-radius: 20px; background: #ff8e6a;}
+/*Profile form*/
 
-.infoWrap {display: flex; justify-content: end; width: 100%;}
-.info {display: flex; flex-direction: column; margin: 0 20px;  max-width: 33%;}
-
-.infoItemBlock {font-weight: bold;}
+.infoItemBlock {font-weight: bold; width: 100%;}
 
 .contactsVal {font-weight: normal; margin-left: 33px;}
 

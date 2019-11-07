@@ -1,4 +1,6 @@
+.formControlWrap, .inputWrap {width: 100%;}
 .formControl {width: 100%; position: relative; margin-bottom: 20px;}
+
 /*.inputWrap > * {border-bottom: 1px solid #000000;}*/
-.formControl.error .inputWrap input, .formControl.error .inputWrap textarea {border: 1px solid #923737;}
-.formControl.error span {color: #923737; position: absolute; bottom: -15px; left: 0; width: 100%;}
+.formControl.error .inputWrap input, .formControl.error .inputWrap textarea {border: 1px solid #923737; border-radius: 20px;}
+.formControl.error span {color: #923737; position: absolute; bottom: -17px; left: 0; width: 100%;}
