@@ -23,13 +23,9 @@ h1 {margin: 0;}
 	display: inline-block;
 	cursor: pointer; /* "hand" cursor */
 }
-.inputFile:focus + label,
-.inputFile + label:hover {
-	background-color: #767979;
-}
+.inputFile:focus + label, .inputFile + label:hover {background-color: #767979;}
 .inputfile:focus + label {outline: 1px dotted #000; outline: -webkit-focus-ring-color auto 5px;}
 .socialLinks {}
-
 /*Profile form*/
 .formSummaryError {border: 1px solid #923737; padding: 5px; color: #923737; border-radius: 20px; background: #ff8e6a;}
 /*Profile form*/

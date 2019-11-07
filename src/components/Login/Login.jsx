@@ -15,7 +15,7 @@ const LoginForm = ({handleSubmit, error}) => {
         <form onSubmit={handleSubmit} className={Styles.formLogin}>
             <h1>Login</h1>
             <div className={Styles.emailInput}>
-                {createField("Email", "email", Input, [requiredField, maxLength30])}
+                {createField("Email", "email", Input, [requiredField, maxLength30], {type: "text"},)}
             </div>
             <div className={Styles.passwInput}>
                 {createField("Password", "password", Input, [requiredField, maxLength30], {type: "password"})}
