@@ -35,19 +35,6 @@ const ProfileInfoForm = ({handleSubmit, isOwner, profile, error}) => {
                     <span>About me:</span>
                     {createField("About me:", "aboutMe", Textarea, [])}
                 </div>
-
-                <div className={`${Class.infoItemBlock}`}>
-                    <span>City:</span>
-                    <span>-----</span>
-                </div>
-                <div className={`${Class.infoItemBlock}`}>
-                    <span>Education:</span>
-                    <span>-----</span>
-                </div>
-                <div className={`${Class.infoItemBlock}`}>
-                    <span>Web Site:</span>
-                    <span>-----</span>
-                </div>
             </div>
             <div className={`${Class.info} ${Class.socialLinks}`}>
                 <h2>Contacts</h2>
@@ -58,7 +45,7 @@ const ProfileInfoForm = ({handleSubmit, isOwner, profile, error}) => {
                         <div key={key} className={Class.contactsItem}>
                             <div className={Class.imgTitle}>
                                 <span className={`${Class.imgSocial} ${Class[key]}`}></span>
-                                <span className={Class.item}>{key}</span>
+                                <span className={Class.typeMainInfo}>{key}</span>
                             </div>
                             {createField(key, "contacts." + key, Input, [], {type: "text"})}
 

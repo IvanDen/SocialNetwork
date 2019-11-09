@@ -16,16 +16,14 @@ export const Chat = (props) => {
 };
 
 export const ChatMy = (props) => {
+
     return (
         <div className={`${Class.message} ${Class.my}`}>
             <span className={`${Class.messageText} ${Class.my}`}>{props.chatText}</span>
             <div className={Class.avaWrap}>
-                <img className={`${Class.avatar}  ${Class.my}`} src={"./img/myAvatar.png"} alt={"avatar"} />
+                <img className={`${Class.avatar}  ${Class.my}`} src={"./img/list-users.png"} alt={"avatar"} />
                 <span>Me</span>
             </div>
         </div>
     );
 };
-
-// export default Chat;
-// export default ChatMy;

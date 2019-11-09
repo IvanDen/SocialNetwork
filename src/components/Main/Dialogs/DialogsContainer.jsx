@@ -6,15 +6,24 @@ import {Redirect, withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
-let mapStateToProps = (state) => {
-    return {
-        dialogsPage: state.dialogsPage,
+
+class DialogsContainer extends React.Component {
+
+    render() {
+        return (
+            <Dialogs {...this.props}                     />
+        )
     }
 }
+
+
+let mapStateToProps = (state) => ({
+    dialogsPage: state.dialogsPage,
+});
 
 
 /*На вход compose получает значение, которое будет передано в качестве аргумента для первой функции, которая в свою очередь передает результат следующей, в конечном счете compose возвращает единственное значение, результат работы всех функций.*/
 export default compose(
     connect(mapStateToProps, {sendTextChat}),
     withAuthRedirect
-)(Dialogs);
+)(DialogsContainer);

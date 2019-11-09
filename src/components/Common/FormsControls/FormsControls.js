@@ -10,6 +10,7 @@ const FormControl = ({input, meta: {touched, error}, children, ...props}) => {
         <div className={Class.formControl + " " + (hasError ? Class.error : "")}>
             <div className={Class.inputWrap}>
                 {children}
+
             </div>
             {hasError && <span>{error}</span>}
 
@@ -24,8 +25,14 @@ export const Textarea = (props) => {
 }
 
 export const Input = (props) => {
+
     const {input, meta, child, element, ...restProps} = props;
-    return <FormControl {...props}><input {...input} {...restProps} /></FormControl>
+    return <FormControl {...props}>
+        <input {...input} {...restProps} />
+        {restProps.type === "checkbox" &&
+        <label htmlFor={input.name}>{restProps.placeholder}</label>}
+
+    </FormControl>
 }
 
 export const createField = (placeholder, name, component, validateObj, props = {}, text = "") => (

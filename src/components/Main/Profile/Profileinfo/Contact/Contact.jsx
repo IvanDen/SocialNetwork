@@ -8,9 +8,9 @@ const Contact = ({contactTitle, contactValue, classNameIcon}) => {
         <div className={Class.contactsItem}>
             <div className={Class.imgTitle}>
                 <span className={`${Class.imgSocial} ${Class[classNameIcon]}`}></span>
-                <span className={Class.item}>{contactTitle}</span>
+                <span className={Class.typeMainInfo}>{contactTitle}</span>
             </div>
-            <span className={Class.contactsVal}>{contactValue}</span>
+            <span className={Class.valMainInfo}>{contactValue}</span>
         </div>
     )
 }

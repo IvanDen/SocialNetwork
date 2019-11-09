@@ -31,21 +31,22 @@ const Profileinfo = ({profile, status, updateStatus, isOwner, savePhoto, savePro
         <div className={Class.userInfo}>
             <div className={`${Class.infoWrap}`}>
                 <div className={`${Class.info} ${Class.avaWrap}`}>
+                    {isOwner &&
+                    <div className={Class.inputFileWrap}>
+                        <input
+                            type={"file"}
+                            id={"avatarImage"}
+                            className={Class.inputFile}
+                            onChange={onMainPhotosSelected} />
+                        <label htmlFor={"avatarImage"}>Choose a photo</label>
+                    </div>
+                    }
                     <div className={Class.imgWrap}>
                         <img className={Class.avatar}
                              src={profile.photos.large || "./img/list-users.png"}
                              alt="avatar" />
                     </div>
-                    {isOwner &&
-                        <div className={Class.inputFileWrap}>
-                            <input
-                                type={"file"}
-                                id={"avatarImage"}
-                                className={Class.inputFile}
-                                onChange={onMainPhotosSelected} />
-                            <label htmlFor={"avatarImage"}>Choose a file</label>
-                        </div>
-                    }
+
                 </div>
             </div>
             {editMode

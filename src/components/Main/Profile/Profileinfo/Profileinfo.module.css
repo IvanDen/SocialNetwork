@@ -5,37 +5,27 @@ h1 {margin: 0;}
 
 .mainImg {width: 100%;}
 .mainImg img {height: 224px; width: 100%;}
-.userInfo {display: flex; flex-direction: column; width: 90%; align-items: center; background: #767979; padding: 20px; border-radius: 20px; box-shadow: inset 0 0 10px 4px #000508, 0 0 10px 4px #000508;}
+.userInfo {display: flex; flex-direction: column; width: 90%; align-items: center; background: #767979; padding: 20px; border-radius: 20px; box-shadow: inset 0 0 10px 4px #000508, 0 0 10px 4px #000508; margin-bottom: 20px;}
 .userInfo .avatar {width: 174px; height: 164px; border-radius: 50%;}
+.typeMainInfo {margin-right: 5px; font-weight: bold;}
 
 .info .avaWrap {max-width: 100%;}
 .info .ownInfo {max-width: 100%;}
 
 .avaWrap .imgWrap {width: 175px;}
-.inputFileWrap {width: 100%; position: relative;}
+.inputFileWrap {position: relative; margin-bottom: 15px; margin-left: auto;}
 .inputFile {width: 0.1px; height: 0.1px; opacity: 0; overflow: hidden; position: absolute; z-index: 1;}
-
-.inputFile + label {
-	font-size: 1.25em;
-	font-weight: 700;
-	color: white;
-	background-color: black;
-	display: inline-block;
-	cursor: pointer; /* "hand" cursor */
-}
-.inputFile:focus + label, .inputFile + label:hover {background-color: #767979;}
-.inputfile:focus + label {outline: 1px dotted #000; outline: -webkit-focus-ring-color auto 5px;}
+.inputFile + label {font-weight: 700; color: white; background-color: #000000; padding: 10px; border-radius: 10px; display: inline-block; cursor: pointer; transition: .3s all;}
+.inputFile + label:hover {background-color: #4D5050;}
 .socialLinks {}
 /*Profile form*/
 .formSummaryError {border: 1px solid #923737; padding: 5px; color: #923737; border-radius: 20px; background: #ff8e6a;}
 /*Profile form*/
-
-.infoItemBlock {font-weight: bold; width: 100%;}
-
-.contactsVal {font-weight: normal; margin-left: 33px;}
+.infoItemBlock {display: flex; flex-direction: column; margin-bottom: 20px; width: 100%;}
+.valMainInfo {font-weight: normal; margin-left: 33px; font-style: italic; word-break: break-all;}
 
 .contactsItem {display: flex; flex-direction: column; width: 100%; margin: 10px 0;}
-.imgTitle {display: flex; align-items: center;}
+.imgTitle {display: flex; align-items: center; margin-bottom: 10px;}
 .imgSocial {background: url('../../../../img/sicial-preview.png') no-repeat; width: 26px; height: 26px; display: block; flex-shrink: 0; margin-right: 7px;}
 
 .imgSocial.facebook {background-position-x: -9px; background-position-y: -9px;}
@@ -46,4 +36,3 @@ h1 {margin: 0;}
 .imgSocial.youtube {background-position-x: -9px; background-position-y: -39px;}
 .imgSocial.github {background-position-x: -69px; background-position-y: -129px;}
 .imgSocial.mainLink {background-position-x: -279px; background-position-y: -219px;}
-.contactsItem .item {margin-right: 5px; font-weight: bold;}

@@ -9,15 +9,13 @@ import {maxLengthCreator, requiredField} from "../../../utils/validators";
 
 
 const Dialogs = (props) => {
-
     let state = props.dialogsPage;
-
     let dialogsElement =
         state.dialogs.map(dialog => <People id={dialog.id} key={dialog.id} userName={dialog.name} />);
     let messagesElement =
         state.messages.map(messages => <Chat id={messages.id} chatText={messages.message} key={messages.id} />);
     let messagesElementMe =
-        state.messagesMe.map(messages => <ChatMy chatText={messages.message} key={messages.id}/>);
+        state.messagesMe.map(messages => <ChatMy profile={props.profile} chatText={messages.message} key={messages.id}/>);
 
 //Input Value
     let newMessageElement = React.createRef();
@@ -32,9 +30,6 @@ const Dialogs = (props) => {
         }
     }
 
-    /*if (!props.isAuth) {
-        return <Redirect to={'/login'} />
-    };*/
 
     let addNewMessage = (values) => {
         console.log(values.newMessageBody);

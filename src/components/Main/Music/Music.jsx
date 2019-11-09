@@ -1,5 +1,9 @@
 import React from 'react';
-import Class from './Music.module.css';
+
+import {connect} from "react-redux";
+import Dialogs from "../Dialogs/Dialogs";
+import {compose} from "redux";
+import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 
 
 
@@ -11,4 +15,7 @@ const Music = (props) => {
     );
 }
 
-export default Music;
+
+export default compose(
+    withAuthRedirect
+)(Music);
