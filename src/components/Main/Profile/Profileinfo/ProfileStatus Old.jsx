@@ -1,24 +1,23 @@
 import React from 'react';
-import Class from './Profileinfo.module.css';
-import Profileinfo from "./Profileinfo";
+
 
 
 
 class ProfileStatus extends React.Component {
 
     state = {
-        editMode: false,
+        editMode: true,
         status: this.props.status
     }
 
     activateEditMode = () => {
-        // асинхронный запрос поменять спан на импут, обновить стейт
+        // asynchronous request change spawn to input, update state
         this.setState({
             editMode: true
         })
     }
     deActivateEditMode = () => {
-        // асинхронный запрос поменять спан на импут, обновить стейт
+        //asynchronous request change spawn to input, update state
         this.setState({
             editMode: false
         });
@@ -29,7 +28,7 @@ class ProfileStatus extends React.Component {
            status: e.currentTarget.value
         })
     }
-    // метод жизненого цикла componentDidUpdate
+    // life cycle method componentDidUpdate
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.status !== this.props.status) {
             this.setState({

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Class from './Paginator.module.css';
-
+import on from "classnames"
+//Allows you to write classes in a string.
 
 let Paginator = ({totalUsersCount, pageSize, currentPage, onPageChanged, portionSize = 10}) => {
 
@@ -15,17 +16,15 @@ let Paginator = ({totalUsersCount, pageSize, currentPage, onPageChanged, portion
     let rightPortionPageNumber = portionNumber * portionSize;
 
     return (
-        <div className={Class.paginatorWrap}>
-            <div className={Class.pageList}>
+        <div className={on(Class.paginatorWrap)}>
+            <div className={on(Class.pageList)}>
                 {portionNumber > 1
                     ? <button onClick={() => {setPortionNumber(portionNumber - 1)}}>prev</button>
                     : <button disabled >prev</button>}
                 {pages
                     .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
                     .map((p) => {
-                        return <span className={currentPage === p
-                            ? Class.selectedPage
-                            : ""}
+                        return <span className={on({[Class.selectedPage]: currentPage === p})}
                                      key={p}
                                      onClick={(e) => {onPageChanged(p);
                                      }}>{p}</span>

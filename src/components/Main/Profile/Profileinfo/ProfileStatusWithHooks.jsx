@@ -12,7 +12,7 @@ const ProfileStatusWithHooks = (props) => {
     // destructuring assignment - [a, b] = [10, 20]
     let [editMod, setEditMod] = useState(false);
     let [status, setStatus] = useState(props.status);
-
+    // useEffect monitor the state of the second parameter and if it changes, then it will re-direct the component.
     useEffect(() => {
         setStatus(props.status);
     }, [props.status]);
@@ -44,6 +44,7 @@ const ProfileStatusWithHooks = (props) => {
             {editMod &&
                 <div>
                     <input
+                        type="text"
                         autoFocus={true}
                         onBlur={deActivateEditMode}
                         onChange={onStatusChange}
