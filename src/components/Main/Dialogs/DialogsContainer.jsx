@@ -1,5 +1,5 @@
 import React from 'react';
-import {sendTextChat} from "../../../redux/dialogs-reduser";
+import {sendTextChat, updateNewChatText} from "../../../redux/dialogs-reduser";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {Redirect, withRouter} from "react-router-dom";
@@ -11,7 +11,10 @@ class DialogsContainer extends React.Component {
 
     render() {
         return (
-            <Dialogs {...this.props}                     />
+            <Dialogs {...this.props}
+                 updateNewChatText={this.props.updateNewChatText}
+                 dialogsPage={this.props.dialogsPage}
+            />
         )
     }
 }
@@ -19,11 +22,12 @@ class DialogsContainer extends React.Component {
 
 let mapStateToProps = (state) => ({
     dialogsPage: state.dialogsPage,
+    updateNewChatText: state.updateNewChatText
 });
 
 
 /*На вход compose получает значение, которое будет передано в качестве аргумента для первой функции, которая в свою очередь передает результат следующей, в конечном счете compose возвращает единственное значение, результат работы всех функций.*/
 export default compose(
-    connect(mapStateToProps, {sendTextChat}),
+    connect(mapStateToProps, {sendTextChat, updateNewChatText}),
     withAuthRedirect
 )(DialogsContainer);

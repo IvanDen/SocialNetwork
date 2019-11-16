@@ -1,8 +1,14 @@
 import React from "react";
 import Class from './FormsControls.module.css';
-import {requiredField} from "../../../utils/validators";
 import {Field} from "redux-form";
 
+const submitMyForm = ({data, props}) => {
+    const { createRecord, reset } = props;
+    return createRecord(data).then(() => {
+        reset();
+        // do other success stuff
+    });
+}
 
 const FormControl = ({input, meta: {touched, error}, children, ...props}) => {
     const hasError = touched && error;
@@ -21,7 +27,9 @@ const FormControl = ({input, meta: {touched, error}, children, ...props}) => {
 export const Textarea = (props) => {
     // Метод деструктуризации inpus, meta, ...props
     const {input, meta, child, element, ...restProps} = props;
-    return <FormControl {...props}><textarea {...input} {...restProps} /></FormControl>
+    return <FormControl {...props}>
+        <textarea {...input} {...restProps} />
+    </FormControl>
 }
 
 export const Input = (props) => {
@@ -31,7 +39,6 @@ export const Input = (props) => {
         <input {...input} {...restProps} />
         {restProps.type === "checkbox" &&
         <label htmlFor={input.name}>{restProps.placeholder}</label>}
-
     </FormControl>
 }
 

@@ -13,6 +13,7 @@ const ProfileStatusWithHooks = (props) => {
     let [editMod, setEditMod] = useState(false);
     let [status, setStatus] = useState(props.status);
     // useEffect monitor the state of the second parameter and if it changes, then it will re-direct the component.
+
     useEffect(() => {
         setStatus(props.status);
     }, [props.status]);

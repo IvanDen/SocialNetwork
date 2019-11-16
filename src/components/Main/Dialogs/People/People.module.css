@@ -1,5 +1,5 @@
-.items {margin-bottom: 25px;}
-.items a{color: #8190A5; font-size: 18px;}
+.items {margin-bottom: 25px; height: 27px;}
+.items a{color: #fff; font-size: 18px;}
 .items a.active {color: #343F4B; font-size: 24px;}
 
 

@@ -1,10 +1,10 @@
-.dialogsWrap {display: flex; width: 100%;}
-.dialogsWrap .listWrap {width: 29%; border-right: 1px solid #4be04f; margin-right: 10px; display: flex; flex-direction: column;}
+.dialogsWrap {display: flex; width: 100%; height: 100%; align-items: stretch;}
+.dialogsWrap .listWrap {width: 29%; margin-right: 10px; padding: 10px; display: flex; flex-direction: column;}
 .dialogsWrap .listWrap .list {display: flex; flex-direction: column; align-items: center;}
 .dialogsWrap .listWrap h1 {font-size: 26px;}
+.wrapBoxClass {box-shadow: inset 0 0 10px 4px #000508, 0 0 10px 4px #000508; border-radius: 15px; background: #767979;}
 
-
-.chat {width: 70%; display: flex; flex-direction: column;}
+.chat {width: 70%; display: flex; flex-direction: column; padding: 10px;}
 .chat .sendWrap {width: 100%; display: flex; flex-direction: column; margin-top: auto;}
 
 .message {width: 70%; display: flex; margin: 10px 0;}
