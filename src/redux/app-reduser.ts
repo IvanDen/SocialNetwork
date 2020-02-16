@@ -2,11 +2,15 @@ import {authUser} from "./auth-reduser";
 
 const INITIALIZED_SUCCESS ='INITIALIZED_SUCCESS';
 
-let initialState = {
+export type InitialStateType = {
+    initialized: boolean
+}
+
+let initialState: InitialStateType = {
     initialized: false
 };
 
-const appReducer = (state = initialState, action) => {
+const appReducer = (state = initialState, action: any): InitialStateType => {
 
     switch (action.type) {
         case INITIALIZED_SUCCESS: {
@@ -19,10 +23,13 @@ const appReducer = (state = initialState, action) => {
             return state;
     }
 }
+type InitializedSuccessActionType = {
+    type: typeof INITIALIZED_SUCCESS
+}
 
-export const initializedSuccess = () => ({type: INITIALIZED_SUCCESS});
+export const initializedSuccess = (): InitializedSuccessActionType => ({type: INITIALIZED_SUCCESS});
 
-export const initializeApp = () => (dispatch) => {
+export const initializeApp = () => (dispatch: any) => {
     let promise = dispatch(authUser());
 //If the promise is returned from several dispatch, then we wrap promises in an array.
     Promise.all([promise]).then(() => {

@@ -12,8 +12,8 @@ class DialogsContainer extends React.Component {
     render() {
         return (
             <Dialogs {...this.props}
-                 updateNewChatText={this.props.updateNewChatText}
-                 dialogsPage={this.props.dialogsPage}
+                     updateNewChatText={this.props.updateNewChatText}
+                     dialogsPage={this.props.dialogsPage}
             />
         )
     }
@@ -26,7 +26,9 @@ let mapStateToProps = (state) => ({
 });
 
 
-/*На вход compose получает значение, которое будет передано в качестве аргумента для первой функции, которая в свою очередь передает результат следующей, в конечном счете compose возвращает единственное значение, результат работы всех функций.*/
+/*На вход compose получает значение, которое будет передано в качестве аргумента для первой функции,
+//которая в свою очередь передает результат следующей,
+//в конечном счете compose возвращает единственное значение, результат работы всех функций.*/
 export default compose(
     connect(mapStateToProps, {sendTextChat, updateNewChatText}),
     withAuthRedirect

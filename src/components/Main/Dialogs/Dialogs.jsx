@@ -2,37 +2,30 @@ import React from 'react';
 import Class from './Dialogs.module.css';
 import People from "./People/People";
 import {Chat, ChatMy} from "./Chat/Chat";
-import {Redirect} from "react-router-dom";
-import {Field, reduxForm} from "redux-form";
+// import { Redirect} from "react-router-dom";
+import {reduxForm} from "redux-form";
 import {createField, Textarea} from "../../Common/FormsControls/FormsControls";
 import {maxLengthCreator, requiredField} from "../../../utils/validators";
 
 
 const Dialogs = (props) => {
     let state = props.dialogsPage;
-    let dialogsElement =
-        state.dialogs.map(dialog => <People id={dialog.id} key={dialog.id} userName={dialog.name} />);
-    let messagesElement =
-        state.messages.map(messages => <Chat id={messages.id} chatText={messages.message} key={messages.id} />);
-    let messagesElementMe =
-        state.messagesMe.map(messages => <ChatMy profile={props.profile} chatText={messages.message} key={messages.id}/>);
+    let dialogsElement = state.dialogs.map(dialog => <People id={dialog.id} key={dialog.id} userName={dialog.name} />);
+    let messagesElement = state.messages.map(messages => <Chat id={messages.id} chatText={messages.message} key={messages.id} />);
+    let messagesElementMe = state.messagesMe.map(messages => <ChatMy profile={props.profile} chatText={messages.message} key={messages.id}/>);
 
 //Input Value
-
-
-    let sendMessage = (values) => {
+    const sendMessage = (values) => {
 
         if (values) {
             props.sendTextChat(values);
-
-
         }
         else {
             alert('enter your text!');
         }
     }
 
-    let addNewMessage = (values) => {
+    const addNewMessage = (values) => {
         sendMessage(values.newMessageBody);
     }
 
