@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import {connect, DefaultRootState} from 'react-redux';
 import {
     Follow, requestUsers,
     setCurrentPage,
@@ -16,24 +16,49 @@ import {
     getIsFetching,
     getPageSize,
     getTotalUsersCount,
-    getUsersPage, getUsersSuper
+    getUsersPage
 } from "../../../redux/users-selectors";
+import {UsersType} from "../../../Types/types";
+import {AppStateType} from "../../../redux/redux-store";
 
+type MapStatePropsType = {
+    currentPage: number
+    pageSize: number
+    isFetching: boolean
+    totalUsersCount: number
+    users: UsersType[]
+    followingInProgress: number[]
+}
 
-class UsersContainer extends React.Component {
+type MapDispatchPropsType = {
+    Follow: (userId: number) => void
+    unFollow: (userId: number) => void
+    getUsers: (currentPage: number, pageSize: number) => void
+    // setCurrentPage?: (currentPage: number) => void
+    // toggleFollowingProgress?: (isFetching: boolean, userId: number) => void
+}
+
+type OwnPropsType = {
+    pageTitle: string
+}
+
+type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType;
+
+class UsersContainer extends React.Component<PropsType> {
 
     componentDidMount() {
         const {currentPage, pageSize} = this.props;
         this.props.getUsers(currentPage, pageSize);
     }
 
-    onPageChanged = (pageNumber) => {
+    onPageChanged = (pageNumber: number) => {
         const {pageSize} = this.props;
         this.props.getUsers(pageNumber, pageSize);
     }
 
     render() {
         return <>
+            <h2>{this.props.pageTitle}</h2>
             {this.props.isFetching
                 ? <Preloader />
                 : <Users totalUsersCount={this.props.totalUsersCount}
@@ -51,7 +76,7 @@ class UsersContainer extends React.Component {
 }
 
 
-let mapsStateToProps = (state) => {
+let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     //we use selectors from users-selectors
     return {
         users: getUsersPage(state),
@@ -63,9 +88,12 @@ let mapsStateToProps = (state) => {
     }
 };
 
+//<TStateProps = {}, TDispatchProps = {}, TOwnProps = {}, State = DefaultRootState>
 
 export default compose(
     withAuthRedirect,
-    connect(mapsStateToProps,
-        {Follow, unFollow, setCurrentPage, toggleFollowingProgress, getUsers: requestUsers}),
+    connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, /*PropsType,*/AppStateType>(
+        mapStateToProps,
+        {Follow, unFollow, getUsers: requestUsers}),
 )(UsersContainer);
+
