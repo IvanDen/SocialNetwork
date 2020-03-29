@@ -1,4 +1,4 @@
-import {AuthAPI, usersAPI, securityAPI} from "../api/api";
+import {AuthAPI, usersAPI, securityAPI, ResultCodesEnum, ResultCodesForCaptcha} from "../api/api";
 import {stopSubmit} from "redux-form";
 
 const SET_USER_DATA ='social-network/auth/SET_USER_DATA';
@@ -65,9 +65,9 @@ export const getCaptchaUrlSuccess = (captchaUrl: string): GetCaptchaUrlSuccessAc
 });
 
 export const authUser = () => async (dispatch: any) => {
-        let response = await AuthAPI.checkAuth();
-        if (response.resultCode === 0) {
-            let {id, email, login} = response.data;
+        let authData = await AuthAPI.checkAuth();
+        if (authData.resultCode === ResultCodesEnum.Success) {
+            let {id, email, login} = authData.data;
             dispatch(setAuthUserData(id, email, login, true));
         }
 }
@@ -78,24 +78,24 @@ export const authUser = () => async (dispatch: any) => {
 
 export const login = (email: string, password: string, rememberMe: boolean, captcha: string) => async (dispatch: any) => {
     //thank
-    const response = await AuthAPI.login(email, password, rememberMe, captcha);
-    if (response.data.resultCode === 0) {
+    const loginData = await AuthAPI.login(email, password, rememberMe, captcha);
+    if (loginData.resultCode === ResultCodesEnum.Success) {
         //success, get auth data
         dispatch(authUser());
     }
 
     else {
-        if (response.data.resultCode === 10) {
+        if (loginData.resultCode === ResultCodesForCaptcha.CaptchaIsRequired) {
             dispatch(getCaptchaUrl());
         }
-        let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error";
+        let message = loginData.messages.length > 0 ? loginData.messages[0] : "Some error";
         dispatch(stopSubmit("login", {_error: message}));
     }
 }
 
 export const logout = () => async (dispatch: any) => {
     const response = await AuthAPI.logout();
-    if (response.data.resultCode === 0) {
+    if (response.data.resultCode === ResultCodesEnum.Success) {
         dispatch(setAuthUserData(null, null, null, false));
     }
 }
