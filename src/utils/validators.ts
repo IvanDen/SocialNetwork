@@ -1,4 +1,6 @@
-export const requiredField = (value) => {
+export type FieldValidatorType = (value: string) => string | undefined;
+
+export const requiredField: FieldValidatorType = (value) => {
     //Check if there is a value in the input field
     if (value)
         return undefined;
@@ -6,7 +8,7 @@ export const requiredField = (value) => {
     return 'Field is required';
 }
 
-export const maxLengthCreator = (maxLength) => (value) => {
+export const maxLengthCreator = (maxLength: number): FieldValidatorType => (value) => {
     if (value.length > maxLength)
         return `Max length is ${maxLength} symbols`;
 
