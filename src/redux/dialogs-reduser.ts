@@ -1,5 +1,4 @@
-const UPDATE_NEW_CHAT = 'UPDATE-NEW-CHAT';
-const SEND_TEXT_CHAT = 'SEND-TEXT-CHAT';
+import { InferActionsTypes } from "./redux-store";
 
 type DialogType = {
     id: number
@@ -11,6 +10,9 @@ type MessagesType = {
     likeCount: number
     message: string
 }
+
+export type InitialStateType = typeof initialState;
+type ActionsType = InferActionsTypes<typeof actions>;
 
 let initialState = {
     dialogs: [
@@ -26,7 +28,7 @@ let initialState = {
         {id: 10, name: 'Bender'}
     ] as Array<DialogType>,
     messagesMe: [
-        {id: 2, likeCount: 0, message: 'I am a normal pBLablabl I can have text and everythin.'}
+        {id: 2, likeCount: 0, message: 'I am a normal. I can have text and everything.'}
 
     ] as Array<MessagesType>,
     messages: [
@@ -35,17 +37,17 @@ let initialState = {
     defaultText: "" as string
 };
 
-export type InitialStateType = typeof initialState;
 
-const dialogsReducer = (state = initialState, action: any): InitialStateType => {
+
+const dialogsReducer = (state = initialState, action: ActionsType): InitialStateType => {
 
     switch (action.type) {
-        case SEND_TEXT_CHAT:
+        case 'SN/DIALOGS/SEND-TEXT-CHAT':
             return {
                 ...state,
                 messagesMe: [...state.messagesMe, {id: 15, likeCount: 0, message: action.newMessageBody}]
             };
-        case UPDATE_NEW_CHAT:
+        case 'SN/DIALOGS/UPDATE-NEW-CHAT':
             return {
                 ...state,
                 defaultText: action.defaultText
@@ -55,17 +57,11 @@ const dialogsReducer = (state = initialState, action: any): InitialStateType => 
             return state;
     }
 }
-type SendTextChatActionType = {
-    type: typeof SEND_TEXT_CHAT
-    newMessageBody: string
-}
-export const sendTextChat = (newMessageBody: string): SendTextChatActionType => ({type: SEND_TEXT_CHAT, newMessageBody});
 
-type UpdateNewChatTextActionType = {
-    type: typeof UPDATE_NEW_CHAT
-    defaultText: string
+export const actions = {
+    sendTextChat: (newMessageBody: string) => ({type: 'SN/DIALOGS/SEND-TEXT-CHAT', newMessageBody} as const),
+    updateNewChatText: (defaultText: string) => ({type: 'SN/DIALOGS/UPDATE-NEW-CHAT', defaultText } as const),
 }
-export const updateNewChatText = (defaultText: string): UpdateNewChatTextActionType =>
-    ({type: UPDATE_NEW_CHAT, defaultText });
+
 
 export default dialogsReducer;

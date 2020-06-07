@@ -7,18 +7,10 @@ import {securityAPI} from "../api/security-api";
 import {BaseThunkType, InferActionsTypes} from "./redux-store";
 
 
-export interface InitialStateType2 {
-    userId: number | null
-    email: string | null
-    login: string | null
-    isAuth: boolean
-    captchaUrl: string | null
-}
-
 let initialState = {
-    userId: null,
-    email: null,
-    login: null,
+    userId: null as (number | null),
+    email: null as string | null,
+    login: null as string | null,
     isAuth: false,
     captchaUrl: null as string | null // if null, then captcha is not required
 };
@@ -26,7 +18,7 @@ type InitialStateType = typeof initialState;
 type ActionsType = InferActionsTypes<typeof actions>;
 type ThunkType = BaseThunkType<ActionsType | FormAction>;
 
-const authReducer = (state = initialState, action: ActionsType) => {
+const authReducer = (state = initialState, action: ActionsType): InitialStateType => {
 
     switch (action.type) {
         case 'SN/auth/SET_USER_DATA':
