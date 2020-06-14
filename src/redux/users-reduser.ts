@@ -1,8 +1,7 @@
 import {updateObjectInArray} from "../utils/object-helpers";
-import {PhotosType, UsersType} from "../Types/types";
-import {AppStateType, BaseThunkType, InferActionsTypes} from "./redux-store";
-import {Action, Dispatch} from "redux";
-import {ThunkAction} from "redux-thunk";
+import {UsersType} from "../Types/types";
+import {BaseThunkType, InferActionsTypes} from "./redux-store";
+import {Dispatch} from "redux";
 import {usersAPI} from "../api/users-api";
 
 

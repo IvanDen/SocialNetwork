@@ -2,20 +2,26 @@ import React from 'react';
 import Class from './Dialogs.module.css';
 import People from "./People/People";
 import {Chat, ChatMy} from "./Chat/Chat";
-// import { Redirect} from "react-router-dom";
-import {reduxForm} from "redux-form";
-import {createField, Textarea} from "../../Common/FormsControls/FormsControls";
+import {InjectedFormProps, reduxForm} from "redux-form";
+import {createField, Input, Textarea} from "../../Common/FormsControls/FormsControls";
 import {maxLengthCreator, requiredField} from "../../../utils/validators";
+import {actions, InitialStateType} from '../../../redux/dialogs-reduser';
 
+type OwnPropsType = {
+    dialogsPage: InitialStateType;
+    sendTextChat: (newMessageBody: string) => void;
+    updateNewChatText: (defaultText: string) => void
+    profile: any;
+}
 
-const Dialogs = (props) => {
+const Dialogs: React.FC<OwnPropsType> = (props) => {
     let state = props.dialogsPage;
     let dialogsElement = state.dialogs.map(dialog => <People id={dialog.id} key={dialog.id} userName={dialog.name} />);
     let messagesElement = state.messages.map(messages => <Chat id={messages.id} chatText={messages.message} key={messages.id} />);
     let messagesElementMe = state.messagesMe.map(messages => <ChatMy profile={props.profile} chatText={messages.message} key={messages.id}/>);
 
 //Input Value
-    const sendMessage = (values) => {
+    const sendMessage = (values: string) => {
 
         if (values) {
             props.sendTextChat(values);
@@ -25,7 +31,7 @@ const Dialogs = (props) => {
         }
     }
 
-    const addNewMessage = (values) => {
+    const addNewMessage = (values: AddMessageFormValuesType) => {
         sendMessage(values.newMessageBody);
     }
 
@@ -47,19 +53,28 @@ const Dialogs = (props) => {
 
 // We wrap the function with the validator in a variable, pass the length of the string
 const maxLength100 = maxLengthCreator(100);
-const AddMessageForm = (props) => {
+
+export type AddMessageFormValuesType = {
+    newMessageBody: string;
+}
+
+type PropsType = {}
+
+type DialogFormValuesTypeKeys = Extract<keyof AddMessageFormValuesType, string>;
+
+const AddMessageForm: React.FC<InjectedFormProps<AddMessageFormValuesType, PropsType> & PropsType> = (props) => {
 
     return (
         <form onSubmit={props.handleSubmit} className={Class.sendWrap}>
+            {createField<DialogFormValuesTypeKeys>("Your message", "newMessageBody", Textarea,  [requiredField, maxLength100])}
 
-            {createField("Your message", "newMessageBody", Textarea, [requiredField, maxLength100])}
 
             <button className="button">Send massage</button>
         </form>
     )
 }
 // Wrap our component in HOC from reduxForm
-const AddMessageFormRedux = reduxForm({form: 'dialogAddMessageForm'})(AddMessageForm);
+const AddMessageFormRedux = reduxForm<AddMessageFormValuesType>({form: 'dialogAddMessageForm'})(AddMessageForm);
 
 
 export default Dialogs;

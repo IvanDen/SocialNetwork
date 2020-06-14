@@ -1,10 +1,10 @@
 import React from 'react';
 import {connect, DefaultRootState} from 'react-redux';
 import {
-    Follow, requestUsers,
-    setCurrentPage,
-    toggleFollowingProgress,
-    unFollow
+    Follow,
+    requestUsers,
+    unFollow,
+    actions
 } from '../../../redux/users-reduser';
 
 import Users from './Users';
@@ -44,7 +44,7 @@ type OwnPropsType = {
 
 type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType;
 
-class UsersContainer extends React.Component<PropsType> {
+export class UsersContainer extends React.Component<PropsType> {
 
     componentDidMount() {
         const {currentPage, pageSize} = this.props;
