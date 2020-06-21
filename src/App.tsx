@@ -28,8 +28,9 @@ type DispatchPropsType = {
 
 
 const SuspendedDialogs = withSuspense(DialogsContainer);
-const SuspendedProfile= withSuspense(ProfileContainer);
-const SuspendedLogin = withSuspense (Login);
+const SuspendedProfile = withSuspense(ProfileContainer);
+const SuspendedLogin = withSuspense(Login);
+// const SuspendedUsersContainer = withSuspense(UsersContainer);
 
 class App extends React.Component<MapPropsType & DispatchPropsType> {
 
@@ -58,14 +59,14 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
                 <main>
                     <Switch>
                         <Route path={'/dialogs'} render={() => <SuspendedDialogs />}/>
-                        <Route path={'/users'} render={ () => <UsersContainer pageTitle={"Some Title!"} />} />
-                        <Route path={'/news'} render={ () => <News />} />
-                        <Route path={'/music'} render={ () => <Music />} />
-                        <Route path={'/settings'} render={ () => <Settings />} />
+                        <Route path={'/users'} render={() => <UsersContainer />} />
+                        <Route path={'/news'} render={() => <News />} />
+                        <Route path={'/music'} render={() => <Music />} />
+                        <Route path={'/settings'} render={() => <Settings />} />
                         <Route path={'/login'} render={() => <SuspendedLogin />} />
                         <Route path={'/profile/:userId?'} render={() => <SuspendedProfile />}/>
                         <Route exact path={'/'} render={() => <Redirect to={'/profile'} />}/>
-                        <Route path={'*'} render={ () => <div>404 not found</div>} />
+                        <Route path={'*'} render={() => <div>404 not found</div>} />
                     </Switch>
                 </main>
                 <Footer />

@@ -2,11 +2,18 @@ import React from 'react';
 import Class from '../Profileinfo.module.css';
 import Contact from "../Contact/Contact";
 import ProfileStatusWithHooks from "../ProfileStatusWithHooks";
+import { ContactsType, ProfileType } from '../../../../../Types/types';
 
-
+type ProfileMainInfoPropsTpe = {
+    profile: ProfileType;
+    status: string;
+    updateStatus: (newStatus: string) => void;
+    isOwner: boolean;
+    goToEditMode: () => void;
+}
 
 //We also create a separate component for the main user information
-const ProfileMainInfo = ({profile, status, updateStatus, isOwner, goToEditMode}) => {
+const ProfileMainInfo: React.FC<ProfileMainInfoPropsTpe> = ({profile, status, updateStatus, isOwner, goToEditMode}) => {
     return (
         <div className={`${Class.info}  ${Class.ownInfo}`}>
             {isOwner &&
@@ -42,7 +49,7 @@ const ProfileMainInfo = ({profile, status, updateStatus, isOwner, goToEditMode})
                 <div className={`${Class.infoItemBlock}`}>
                     {//Using the object we generate contacts
                         Object.keys(profile.contacts).map(key => {
-                            return <Contact key={key} classNameIcon={key} contactTitle={key} contactValue={profile.contacts[key]}/>
+                            return <Contact key={key} classNameIcon={key} contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType]}/>
                         })}
                 </div>
             </div>

@@ -8,7 +8,7 @@ import {
 } from '../../../redux/users-reduser';
 
 import Users from './Users';
-import Preloader from "../../Common/Preloader/Preloader.js";
+import Preloader from "../../Common/Preloader/Preloader";
 import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 import {compose} from "redux";
 import {
@@ -34,17 +34,13 @@ type MapDispatchPropsType = {
     Follow: (userId: number) => void
     unFollow: (userId: number) => void
     getUsers: (currentPage: number, pageSize: number) => void
-    // setCurrentPage?: (currentPage: number) => void
-    // toggleFollowingProgress?: (isFetching: boolean, userId: number) => void
 }
 
-type OwnPropsType = {
-    pageTitle: string
-}
 
-type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType;
+type PropsType = MapStatePropsType & MapDispatchPropsType;
 
-export class UsersContainer extends React.Component<PropsType> {
+class UsersContainer extends React.Component<PropsType> {
+
 
     componentDidMount() {
         const {currentPage, pageSize} = this.props;
@@ -58,7 +54,7 @@ export class UsersContainer extends React.Component<PropsType> {
 
     render() {
         return <>
-            <h2>{this.props.pageTitle}</h2>
+            <h2>Some Title!</h2>
             {this.props.isFetching
                 ? <Preloader />
                 : <Users totalUsersCount={this.props.totalUsersCount}
@@ -69,12 +65,11 @@ export class UsersContainer extends React.Component<PropsType> {
                          follow={this.props.Follow}
                          unfollow={this.props.unFollow}
                          followingInProgress={this.props.followingInProgress}
-                /> }
+                />}
 
         </>
     }
 }
-
 
 let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     //we use selectors from users-selectors
@@ -88,12 +83,10 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     }
 };
 
-//<TStateProps = {}, TDispatchProps = {}, TOwnProps = {}, State = DefaultRootState>
-
 export default compose(
     withAuthRedirect,
-    connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, /*PropsType,*/AppStateType>(
-        mapStateToProps,
-        {Follow, unFollow, getUsers: requestUsers}),
-)(UsersContainer);
+    // TStateProps = {}, TDispatchProps = {}, TOwnProps = {}, State = DefaultRootState
+    connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(
+        mapStateToProps,{Follow, unFollow, getUsers: requestUsers}),
+)(UsersContainer) as React.ComponentType;
 

@@ -2,7 +2,7 @@ import React from 'react';
 import loader from './../../../img/loader.gif';
 import Class from './Preloader.module.css';
 
-let Preloader = (props) => {
+let Preloader: React.FC = () => {
     return (
         <div className={Class.wrap}>
             <div className={Class.loadingWap}>

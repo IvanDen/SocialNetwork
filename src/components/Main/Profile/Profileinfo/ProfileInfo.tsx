@@ -1,30 +1,41 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import Class from './Profileinfo.module.css';
 import Preloader from "../../../Common/Preloader/Preloader";
 import ProfileInfoForm from "./ProfileInfoForm/ProfileInfoForm";
 import ProfileMainInfo from "./ProfileMainInfo/ProfileMainInfo";
+import {ProfileType} from "../../../../Types/types";
 
+type ProfileInfoPropsType = {
+    profile: ProfileType | null;
+    status: string;
+    updateStatus: (newStatus: string) => void;
+    isOwner: boolean;
+    savePhoto: (file: File) => void;
+    saveProfile: (formData: ProfileType) => Promise<any>;
+}
 
-
-const Profileinfo = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile}) => {
+const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile}) => {
     let [editMode, setEditMode] = useState();
     if (!profile){
         return <Preloader />
     }
-    const onMainPhotosSelected = (e) => {
+    const onMainPhotosSelected = (e: ChangeEvent<HTMLInputElement>) => {
 
-        if (e.target.files.length) {
+        if (e.target.files?.length) {
             savePhoto(e.target.files[0]);
         }
     }
 
-    const onSubmit = (formData) => {
+    const onSubmit = (formData: ProfileType): Promise<any> => {
+
+        //ToDo: remove then
         const promise = saveProfile(formData);
         promise.then(
             () => {
                 setEditMode(false);
             }
         );
+        return promise;
     }
 
     return (
@@ -53,8 +64,6 @@ const Profileinfo = ({profile, status, updateStatus, isOwner, savePhoto, savePro
                 ? <ProfileInfoForm
                     initialValues={profile}
                     profile={profile}
-                    status={status}
-                    updateStatus={updateStatus}
                     isOwner={isOwner}
                     onSubmit={onSubmit}
                 />
@@ -68,4 +77,4 @@ const Profileinfo = ({profile, status, updateStatus, isOwner, savePhoto, savePro
     );
 }
 
-export default Profileinfo;
+export default ProfileInfo;

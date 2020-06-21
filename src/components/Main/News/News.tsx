@@ -1,21 +1,18 @@
 import React from 'react';
-
-import {connect} from "react-redux";
-import Dialogs from "../Dialogs/Dialogs";
+import Class from './News.module.css';
 import {compose} from "redux";
 import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 
 
 
-const Music = (props) => {
+const News: React.FC = () => {
     return (
         <div>
-            Music
+            News
         </div>
     );
 }
 
-
 export default compose(
     withAuthRedirect
-)(Music);
+)(News);

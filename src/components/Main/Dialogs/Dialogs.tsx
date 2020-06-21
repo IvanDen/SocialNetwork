@@ -12,13 +12,14 @@ type OwnPropsType = {
     sendTextChat: (newMessageBody: string) => void;
     updateNewChatText: (defaultText: string) => void
     profile: any;
+    userName: string;
 }
 
 const Dialogs: React.FC<OwnPropsType> = (props) => {
     let state = props.dialogsPage;
     let dialogsElement = state.dialogs.map(dialog => <People id={dialog.id} key={dialog.id} userName={dialog.name} />);
-    let messagesElement = state.messages.map(messages => <Chat id={messages.id} chatText={messages.message} key={messages.id} />);
-    let messagesElementMe = state.messagesMe.map(messages => <ChatMy profile={props.profile} chatText={messages.message} key={messages.id}/>);
+    let messagesElement = state.messages.map(messages => <Chat userName={props.userName} chatText={messages.message} key={messages.id} />);
+    let messagesElementMe = state.messagesMe.map(messages => <ChatMy chatText={messages.message} key={messages.id}/>);
 
 //Input Value
     const sendMessage = (values: string) => {

@@ -3,8 +3,12 @@ import Class from './Chat.module.css';
 import ownPhoto from "../../../../img/list-users.png"
 import userPhoto from "../../../../img/posts-user.png"
 
+type ChatPropsType = {
+    userName: string;
+    chatText: string;
+}
 
-export const Chat = (props) => {
+export const Chat: React.FC<ChatPropsType> = (props) => {
 
     return (
         <div className={`${Class.message}`}>
@@ -17,7 +21,12 @@ export const Chat = (props) => {
     );
 };
 
-export const ChatMy = (props) => {
+type ChatMyPropsType = {
+    chatText: string;
+}
+
+
+export const ChatMy: React.FC<ChatMyPropsType> = (props) => {
 
     return (
         <div className={`${Class.message} ${Class.my}`}>

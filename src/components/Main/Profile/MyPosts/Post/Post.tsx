@@ -1,8 +1,14 @@
 import React from 'react';
 import Class from './Post.module.css';
 import userPostPhoto from "../../../../../img/posts-user.png"
+import {InjectedFormProps} from "redux-form";
 
-const Post = (props) => {
+type PostPropsType = {
+	message: string;
+	likeCount: number
+}
+
+const Post: React.FC<PostPropsType> = (props) => {
 
     return (
         <div className={Class.item}>

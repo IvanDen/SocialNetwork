@@ -1,10 +1,17 @@
 import React from 'react';
 import Class from '../Profileinfo.module.css';
-import {createField, Input, Textarea} from "../../../../Common/FormsControls/FormsControls";
-import {reduxForm} from "redux-form";
+import {createField, GetStringKeys, Input, Textarea} from "../../../../Common/FormsControls/FormsControls";
+import {InjectedFormProps, reduxForm} from "redux-form";
+import {ProfileType} from "../../../../../Types/types";
 
+type ProfileInfoFormPropsType = {
+	profile: ProfileType;
+	isOwner: boolean;
+}
 
-const ProfileInfoForm = ({handleSubmit, isOwner, profile, error}) => {
+type ProfileTypeKeys = GetStringKeys<ProfileType>;
+
+const ProfileInfoForm: React.FC<InjectedFormProps<ProfileType, ProfileInfoFormPropsType> & ProfileInfoFormPropsType> = ({handleSubmit, isOwner, profile, error}) => {
     return (
         <form className={`${Class.info}  ${Class.ownInfo}`} onSubmit={handleSubmit}>
             <div className={`${Class.info}  ${Class.ownInfo}`}>
@@ -21,19 +28,19 @@ const ProfileInfoForm = ({handleSubmit, isOwner, profile, error}) => {
                 }
                 <div>
                     <span>Name: </span>
-                    {createField("Full name", "fullName", Input, [], {type: "text"})}
+                    {createField<ProfileTypeKeys>("Full name", "fullName", Input, [], {type: "text"})}
                 </div>
                 <div className={`${Class.infoItemBlock}`}>
                     <span>looking for a job:</span>
-                    {createField("", "lookingForAJob", Input, [], {type: "checkbox"})}
+                    {createField<ProfileTypeKeys>("", "lookingForAJob", Input, [], {type: "checkbox"})}
                 </div>
                 <div className={`${Class.infoItemBlock}`}>
                     <span>My professional skills:</span>
-                    {createField("My skills", "lookingForAJobDescription", Textarea, [])}
+                    {createField<ProfileTypeKeys>("My skills", "lookingForAJobDescription", Textarea, [])}
                 </div>
                 <div className={`${Class.infoItemBlock}`}>
                     <span>About me:</span>
-                    {createField("About me:", "aboutMe", Textarea, [])}
+                    {createField<ProfileTypeKeys>("About me:", "aboutMe", Textarea, [])}
                 </div>
             </div>
             <div className={`${Class.info} ${Class.socialLinks}`}>
@@ -47,6 +54,7 @@ const ProfileInfoForm = ({handleSubmit, isOwner, profile, error}) => {
                                 <span className={`${Class.imgSocial} ${Class[key]}`}></span>
                                 <span className={Class.typeMainInfo}>{key}</span>
                             </div>
+							{/*todo: create some solution for embedded objects*/}
                             {createField(key, "contacts." + key, Input, [], {type: "text"})}
 
                         </div>
@@ -60,7 +68,7 @@ const ProfileInfoForm = ({handleSubmit, isOwner, profile, error}) => {
 }
 
 //Create a container component using HOC from ReduxForm
-const ProfileDataFormReduxForm = reduxForm({form: 'edit-profile'})(ProfileInfoForm);
+const ProfileDataFormReduxForm = reduxForm<ProfileType, ProfileInfoFormPropsType>({form: 'edit-profile'})(ProfileInfoForm);
 
 
 //We are returned the container component that we export

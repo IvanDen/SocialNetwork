@@ -1,9 +1,14 @@
 import React from 'react';
 import Class from '../Profileinfo.module.css';
 
+type ContactPropsType = {
+    contactTitle: string;
+    contactValue: string;
+    classNameIcon: string;
+}
 
 // Create a separate component for contacts
-const Contact = ({contactTitle, contactValue, classNameIcon}) => {
+const Contact: React.FC<ContactPropsType> = ({contactTitle, contactValue, classNameIcon}) => {
     return (
         <div className={Class.contactsItem}>
             <div className={Class.imgTitle}>

@@ -12,6 +12,7 @@ type DialogsContainerProps = {
     sendTextChat: (newMessageBody: string) => void;
     updateNewChatText: (defaultText: string) => void
     profile: any;
+    userName: string;
 }
 
 const DialogsContainer: React.FC<DialogsContainerProps> = (props) => {

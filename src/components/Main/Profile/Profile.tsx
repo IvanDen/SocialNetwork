@@ -1,13 +1,25 @@
 import React from 'react';
 import Class from './profile.module.css';
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import Profileinfo from "./Profileinfo/Profileinfo";
+import ProfileInfo from "./Profileinfo/ProfileInfo";
+import {ProfileType} from "../../../Types/types";
 
-const Profile = (props) => {
+type ProfilePropsType = {
+    profile: ProfileType | null;
+    status: string;
+    updateStatus: (newStatus: string) => void;
+    isOwner: boolean;
+    savePhoto: (file: File) => void;
+    saveProfile: (formData: ProfileType) => Promise<any>;
+    isAuth: boolean;
+
+}
+
+const Profile: React.FC<ProfilePropsType> = (props) => {
 
     return (
         <div className={Class.profilePageWrap}>
-            <Profileinfo
+            <ProfileInfo
                 savePhoto={props.savePhoto}
                 isOwner={props.isOwner}
                 profile={props.profile}

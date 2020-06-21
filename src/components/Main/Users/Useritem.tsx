@@ -1,13 +1,17 @@
 import React from 'react';
-import styles from './users.module.css'
+import styles from './users.module.css';
 import {NavLink} from "react-router-dom";
-import userPhoto from "../../../img/list-users.png"
+import userPhoto from "../../../img/list-users.png";
+import {UsersType} from "../../../Types/types";
 
+type UserItemPropsType = {
+    user: UsersType;
+    followingInProgress: number[];
+    unfollow: (userId: number) => void;
+    follow: (userId: number) => void;
+}
 
-
-
-
-let Useritem = ({user, followingInProgress, unfollow, follow}) => {
+const Useritem: React.FC<UserItemPropsType> = ({user, followingInProgress, unfollow, follow}) => {
 
     return (
         <div className={styles.userItem}>

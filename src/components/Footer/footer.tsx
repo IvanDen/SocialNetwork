@@ -3,7 +3,7 @@ import Class from './footer.module.css';
 import FooterNavLink from "./FooterNavLink/FooterNavLink";
 import Logo from "../Common/Logo/Logo";
 
-const Footer = () => {
+const Footer: React.FC = () => {
     return (
         <footer>
             <div className={Class.contentWrap}>

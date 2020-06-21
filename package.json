@@ -51,6 +51,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-test-renderer": "^16.9.2",
     "eslint": "^6.6.0",
     "eslint-config-airbnb": "^18.0.1",
     "gh-pages": "^2.1.1",

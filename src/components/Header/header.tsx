@@ -3,7 +3,16 @@ import Class from './header.module.css';
 import {NavLink} from "react-router-dom";
 import Logo from "../Common/Logo/Logo";
 
-const Header = (props) => {
+export type MapHeaderPropsType = {
+    isAuth: boolean;
+    login: string | null;
+}
+export type DispatchHeaderPropsType = {
+    logout: () => void;
+}
+
+
+const Header: React.FC<MapHeaderPropsType & DispatchHeaderPropsType> = (props) => {
     return (
         <header>
             <Logo />

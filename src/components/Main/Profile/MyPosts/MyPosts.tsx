@@ -1,26 +1,17 @@
 import React, {PureComponent} from 'react';
 import Class from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {Field, reduxForm} from "redux-form";
-import {maxLengthCreator, requiredField} from "../../../../utils/validators";
-import {createField, Textarea} from "../../../Common/FormsControls/FormsControls";
+import { AddNewPostFormRedux, NewPostFormValuesType } from './AddNewPost/AddNewPost';
+import { PostsType } from '../../../../Types/types';
 
-
-// Create a separate component for the form
-const maxLength10 = maxLengthCreator(30);
-let AddNewPostForm = (props) => {
-
-    return(
-        <form className={Class.postForm} onSubmit={props.handleSubmit}>
-                {createField("Post message", "newPostText", Textarea, [requiredField, maxLength10])}
-            <button>Add post</button>
-        </form>
-    );
+export type MyPostsMapPropsType = {
+    posts: PostsType[];
+}
+export type MyPostsDispatchPropsType = {
+    addPost: (newPostText: string) => void
 }
 
-let AddNewPostFormRedux = reduxForm({form: "ProfileAddNewPostForm"})(AddNewPostForm);
-
-const MyPosts = React.memo(props => {
+const MyPosts: React.FC<MyPostsMapPropsType & MyPostsDispatchPropsType> = (props) => {
 
     /*shouldComponentUpdate (nextProps, nextState) {
         //If class Component if props and stein have not changed, then do not update the component.
@@ -29,9 +20,7 @@ const MyPosts = React.memo(props => {
     }*/
 
 
-    let newPostElement = React.createRef();
-
-    let onAddPost = (values) => {
+    let onAddPost = (values: NewPostFormValuesType) => {
 
         props.addPost(values.newPostText);
     };
@@ -50,7 +39,9 @@ const MyPosts = React.memo(props => {
             </div>
         </div>
     );
-});
+}
+
+const MyPostsMemorized = React.memo(MyPosts);
 
 
-export default MyPosts;
+export default MyPostsMemorized;

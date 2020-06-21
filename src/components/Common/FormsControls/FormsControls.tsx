@@ -64,12 +64,13 @@ type LoginFormsValuesType = {
 
 
 
-export function createField<FormKeysType extends string>(placeholder: string | undefined,
-                            name: FormKeysType,
-                            component: React.FC<WrappedFieldProps & InputElementRestProps>,
-                            validateObj: Array<FieldValidatorType>,
-                            props = {},
-                            text = "") {
+export function createField<FormKeysType extends string>(
+    placeholder: string | undefined,
+    name: FormKeysType,
+    component: React.FC<WrappedFieldProps & InputElementRestProps>,
+    validateObj: Array<FieldValidatorType>,
+    props = {},
+    text = "") {
     return (
         <div className={Class.formControlWrap}>
             <Field
@@ -82,4 +83,4 @@ export function createField<FormKeysType extends string>(placeholder: string | u
         </div>
     )
 }
-
+export type GetStringKeys<T> = Extract<keyof T, string>;

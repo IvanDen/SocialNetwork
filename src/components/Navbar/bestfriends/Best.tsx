@@ -2,7 +2,7 @@ import React from 'react';
 import Class from './best.module.css';
 
 
-const Best = () => {
+const Best: React.FC = () => {
     return (
         <div className={Class.friendsWrap}>
             <span className={Class.title}>Friends</span>
