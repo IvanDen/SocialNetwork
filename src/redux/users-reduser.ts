@@ -3,6 +3,7 @@ import {UsersType} from "../Types/types";
 import {BaseThunkType, InferActionsTypes} from "./redux-store";
 import {Dispatch} from "redux";
 import {usersAPI} from "../api/users-api";
+import {APIResponseType} from "../api/api";
 
 
 let initialState = {
@@ -14,7 +15,7 @@ let initialState = {
     followingInProgress: [] as number[]// array of users id
 };
 
-type InitialStateType = typeof initialState;
+export type InitialStateType = typeof initialState;
 type ActionsType = InferActionsTypes<typeof actions>;
 type ThunkType = BaseThunkType<ActionsType>;
 
@@ -86,6 +87,7 @@ export const actions = {
 
 export const requestUsers = (page: number, pageSize: number): ThunkType => {
      return async (dispatch, getState) => {
+
         dispatch(actions.setToggleIsFetching(true));
         dispatch(actions.setCurrentPage(page));
 
@@ -99,12 +101,12 @@ export const requestUsers = (page: number, pageSize: number): ThunkType => {
 const _followUnfollowFlow = async (
     dispatch: Dispatch<ActionsType>,
     userId: number,
-    apiMethod: any,
+    apiMethod: (userId: number) => Promise<APIResponseType>,
     actionCreator: (userId: number) => ActionsType) => {
     dispatch(actions.toggleFollowingProgress(true, userId));
 
     let data = await apiMethod(userId);
-    if (data.resultCode == 0) {
+    if (data.resultCode === 0) {
         dispatch(actionCreator(userId));
     }
     dispatch(actions.toggleFollowingProgress(false, userId));
