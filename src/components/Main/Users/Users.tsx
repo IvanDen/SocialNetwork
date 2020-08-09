@@ -4,12 +4,15 @@ import styles from './users.module.css'
 import Useritem from "./Useritem"
 import Paginator from "../../Common/Paginator/Paginator";
 import {UsersType} from "../../../Types/types";
+import {UsersSearchForm} from "./UsersSearchForm";
+import {FilterType} from "../../../redux/users-reduser";
 
 type PropsType = {
     currentPage: number,
     totalUsersCount: number,
     pageSize: number,
     onPageChanged: (pageNumber: number) => void,
+    onFilterChanged: (filter: FilterType) => void,
     users: Array<UsersType>,
     followingInProgress: Array<number>
     unfollow: (userId: number) => void,
@@ -20,6 +23,9 @@ let Users: React.FC<PropsType> = ({currentPage, totalUsersCount, pageSize, onPag
 
     return (
         <section className={`${styles.users}`}>
+            <UsersSearchForm
+                onFilterChanged={props.onFilterChanged}
+            />
             <Paginator currentPage={currentPage}
                        onPageChanged={onPageChanged}
                        totalUsersCount={totalUsersCount}
@@ -37,6 +43,5 @@ let Users: React.FC<PropsType> = ({currentPage, totalUsersCount, pageSize, onPag
         </section>
     )
 }
-
 
 export default Users;
