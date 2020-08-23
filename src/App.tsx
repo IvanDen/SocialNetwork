@@ -8,7 +8,7 @@ import Music from "./components/Main/Music/Music";
 import Settings from "./components/Main/Settings/Settings";
 import Footer from "./components/Footer/footer";
 import {BrowserRouter, HashRouter, Redirect, Route, Switch, withRouter} from "react-router-dom";
-import UsersContainer from "./components/Main/Users/UsersContainer";
+import {UsersPage} from "./components/Main/Users/UsersContainer";
 import HeaderContainer from "./components/Header/headerContainer";
 import {connect} from "react-redux";
 import {compose} from "redux";
@@ -17,9 +17,10 @@ import {initializeApp} from "./redux/app-reduser";
 import store, {AppStateType} from "./redux/redux-store";
 import {Provider} from "react-redux";
 import {withSuspense} from "./hoc/withSuspense";
+import {LoginPage} from './components/Login/LoginPage';
+
 const DialogsContainer = React.lazy(() => import('./components/Main/Dialogs/DialogsContainer'));
 const ProfileContainer = React.lazy(() => import('./components/Main/Profile/ProfileContainer'));
-const Login = React.lazy(() => import('./components/Login/Login'));
 
 type MapPropsType = ReturnType<typeof mapStateToProps>;
 type DispatchPropsType = {
@@ -29,7 +30,6 @@ type DispatchPropsType = {
 
 const SuspendedDialogs = withSuspense(DialogsContainer);
 const SuspendedProfile = withSuspense(ProfileContainer);
-const SuspendedLogin = withSuspense(Login);
 // const SuspendedUsersContainer = withSuspense(UsersContainer);
 
 class App extends React.Component<MapPropsType & DispatchPropsType> {
@@ -59,11 +59,11 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
                 <main>
                     <Switch>
                         <Route path={'/dialogs'} render={() => <SuspendedDialogs />}/>
-                        <Route path={'/users'} render={() => <UsersContainer />} />
+                        <Route path={'/users'} render={() => <UsersPage />} />
                         <Route path={'/news'} render={() => <News />} />
                         <Route path={'/music'} render={() => <Music />} />
                         <Route path={'/settings'} render={() => <Settings />} />
-                        <Route path={'/login'} render={() => <SuspendedLogin />} />
+                        <Route path={'/login'} render={() => <LoginPage />} />
                         <Route path={'/profile/:userId?'} render={() => <SuspendedProfile />}/>
                         <Route exact path={'/'} render={() => <Redirect to={'/profile'} />}/>
                         <Route path={'*'} render={() => <div>404 not found</div>} />

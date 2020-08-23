@@ -11,7 +11,7 @@ type UserItemPropsType = {
     follow: (userId: number) => void;
 }
 
-const Useritem: React.FC<UserItemPropsType> = ({user, followingInProgress, unfollow, follow}) => {
+export const Useritem: React.FC<UserItemPropsType> = ({user, followingInProgress, unfollow, follow}) => {
 
     return (
         <div className={styles.userItem}>
@@ -55,4 +55,3 @@ const Useritem: React.FC<UserItemPropsType> = ({user, followingInProgress, unfol
     )
 }
 
-export default Useritem;
