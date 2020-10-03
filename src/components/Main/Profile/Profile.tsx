@@ -3,6 +3,7 @@ import Class from './profile.module.css';
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import ProfileInfo from "./Profileinfo/ProfileInfo";
 import {ProfileType} from "../../../Types/types";
+import {useDispatch, useSelector} from "react-redux";
 
 type ProfilePropsType = {
     profile: ProfileType | null;
@@ -16,6 +17,9 @@ type ProfilePropsType = {
 }
 
 const Profile: React.FC<ProfilePropsType> = (props) => {
+
+    const dispatch = useDispatch();
+
 
     return (
         <div className={Class.profilePageWrap}>

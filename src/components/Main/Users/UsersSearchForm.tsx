@@ -1,15 +1,18 @@
 import {Field, Form, Formik} from "formik";
 import React from "react";
 import { FilterType } from "../../../redux/users-reduser";
+import {useSelector} from "react-redux";
+import {getUsersFilter} from "../../../redux/users-selectors";
 
 const usersSearchFormValidate = (values: any): any => {
 	const errors = {};
 	return errors;
 }
 
+type FriendFormType = "true" | "false" | "null";
 type FormType = {
 	term: string;
-	friend: "true" |"false" | "null";
+	friend: FriendFormType;
 }
 
 type PropsType = {
@@ -17,6 +20,8 @@ type PropsType = {
 }
 
 export const UsersSearchForm: React.FC<PropsType> = React.memo((props) => {
+
+	const filter = useSelector(getUsersFilter);
 
 	const submit = (values: FormType, {setSubmitting}: { setSubmitting: (isSubmitting: boolean) => void }) => {
 	// To-Do Сделать коректный конвертор значений для селекта
@@ -31,7 +36,8 @@ export const UsersSearchForm: React.FC<PropsType> = React.memo((props) => {
 	return (
 		<div>
 			<Formik
-				initialValues={{term: '', friend: "null"}}
+				enableReinitialize
+				initialValues={{term: filter.term, friend: String(filter.friend) as FriendFormType}}
 				validate={usersSearchFormValidate}
 
 				onSubmit={submit}
@@ -41,8 +47,8 @@ export const UsersSearchForm: React.FC<PropsType> = React.memo((props) => {
 						<Field style={{border: '1px solid #000508'}} type="text" name="term"/>
 						<Field name="friend" as="select">
 							<option value="null">All</option>
-							<option value="true">Only followed</option>
-							<option value="false">only unfollowed</option>
+							<option value="false">Only followed</option>
+							<option value="true">only unfollowed</option>
 						</Field>
 						<button type="submit" disabled={isSubmitting}>
 							Submit
