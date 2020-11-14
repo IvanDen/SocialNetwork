@@ -61,8 +61,8 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
 			return <Preloader/>
 		}
 		return (
-			<Layout>
-                <HeaderLoginInfo />
+			<Layout style={{minHeight: '100vh'}}>
+				<HeaderLoginInfo/>
 				<Content style={{padding: '0 50px'}}>
 					<Breadcrumb style={{margin: '16px 0'}}>
 						<Breadcrumb.Item>Home</Breadcrumb.Item>
@@ -110,7 +110,7 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
 						</Content>
 					</Layout>
 				</Content>
-				<FooterContent />
+				<FooterContent/>
 			</Layout>
 		);
 	}
