@@ -5,7 +5,14 @@ h1 {margin: 0;}
 
 .mainImg {width: 100%;}
 .mainImg img {height: 224px; width: 100%;}
-.userInfo {display: flex; flex-direction: column; width: 90%; align-items: center; background: #767979; padding: 20px; border-radius: 20px; box-shadow: inset 0 0 10px 4px #000508, 0 0 10px 4px #000508; margin-bottom: 20px;}
+.userInfo {
+	display: flex;
+	flex-direction: column;
+	width: 90%; align-items: center;
+	padding: 20px;
+	border-radius: 20px;
+	box-shadow: inset 0 0 10px 4px #000508, 0 0 10px 4px #000508; margin-bottom: 20px;
+}
 .userInfo .avatar {width: 174px; height: 164px; border-radius: 50%;}
 .typeMainInfo {margin-right: 5px; font-weight: bold;}
 

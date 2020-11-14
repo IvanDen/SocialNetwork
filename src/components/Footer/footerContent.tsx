@@ -1,17 +1,20 @@
 import React from 'react';
 import Class from './footer.module.css';
-import FooterNavLink from "./FooterNavLink/FooterNavLink";
 import Logo from "../Common/Logo/Logo";
+import {Layout} from "antd";
 
-const Footer: React.FC = () => {
+
+const {Header, Footer} = Layout;
+const FooterContent: React.FC = () => {
     return (
-        <footer>
+        <Footer style={{textAlign: 'center', background: '#001529'}}>
             <div className={Class.contentWrap}>
-                <FooterNavLink />
                 <Logo />
             </div>
-        </footer>
+        </Footer>
+
+
     );
 }
 
-export default Footer;
+export default FooterContent;
