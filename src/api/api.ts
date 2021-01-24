@@ -1,12 +1,14 @@
 import axios from "axios/index";
 import {UsersType} from '../Types/types';
+import {appConfig} from '../../config';
+
 
 // it is dal level
 export const instance = axios.create({
     withCredentials: true,
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     headers: {
-        'API-KEY': 'ef3749fc-291d-4d38-9a5b-8971e825c8f4'
+        'API-KEY': appConfig.API_KEY
     },
 });
 
