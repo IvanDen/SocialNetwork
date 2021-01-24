@@ -1,6 +1,6 @@
 import axios from "axios/index";
 import {UsersType} from '../Types/types';
-import {appConfig} from '../../config';
+import {appConfig} from '../config';
 
 
 // it is dal level
