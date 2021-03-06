@@ -14,21 +14,25 @@ const ChatPage: React.FC = () => {
 
 const Chat: React.FC = () => {
 	const dispatch = useDispatch();
+	const status = useSelector((state: AppStateType) => state.chat.status);
 
 	useEffect(() => {
-		dispatch(startMessagesListening);
+		dispatch(startMessagesListening());
 		return () => {
-			dispatch(stopMessagesListening);
+			dispatch(stopMessagesListening());
 		}
 	}, []);
 
 	return <div>
-		<Messages />
-		<AddMessageForm />
+			{status === 'error' && <div> Error, refresh page!</div>}
+			<>
+				<Messages />
+				<AddMessageForm />
+			</>
 	</div>;
 }
 
-const Messages: React.FC = () => {
+const Messages: React.FC<{}> = ({}) => {
 
 	const messages = useSelector((state: AppStateType) => state.chat.messages);
 	const messagesDivContainer = useRef<HTMLDivElement>(null);
@@ -45,6 +49,7 @@ const Messages: React.FC = () => {
 	return (
 		<div style={{height: '400px', overflow: 'auto'}} ref={messagesDivContainer}>
 			{messages.map((m, index) => <Message key={index} message={m} /> )}
+
 		</div>
 	);
 }
@@ -70,6 +75,8 @@ const AddMessageForm: React.FC<{}> = ({}) => {
 	const [message, setMessage] = useState('');
 	const dispatch = useDispatch();
 
+	const status = useSelector((state: AppStateType) => state.chat.status);
+
 	const sendMessageHandler = () => {
 		if (!message) return;
 
@@ -82,7 +89,7 @@ const AddMessageForm: React.FC<{}> = ({}) => {
 			<textarea onChange={(e) => setMessage(e.currentTarget.value)} value={message}></textarea>
 		</div>
 		<div>
-			<button onClick={sendMessageHandler}>Send</button>
+			<button disabled={status !== 'ready'} onClick={sendMessageHandler}>Send</button>
 		</div>
 		Form
 	</div>;

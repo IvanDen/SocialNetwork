@@ -4,7 +4,7 @@ import { create } from "react-test-renderer";
 
 
 describe("ProfileStatus component", () => {
-    // test("Status from page should be in the state", () => {
+    // test("StatusType from page should be in the state", () => {
     //     const component = create(<ProfileStatus status="Test status" />);
     //     const instance = component.getInstance();
     //     expect(instance.state.status).toBe("Test status");
