@@ -15,7 +15,7 @@ type ProfileInfoPropsType = {
 }
 
 const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile}) => {
-    let [editMode, setEditMode] = useState();
+    let [editMode, setEditMode] = useState<boolean>();
     if (!profile){
         return <Preloader />
     }

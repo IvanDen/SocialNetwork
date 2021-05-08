@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {Breadcrumb, Layout, Menu, Avatar} from 'antd';
-import {IChatMessage} from "../../api/chat-api";
+import {IChatMessageAPIType} from "../../api/chat-api";
 import {useDispatch, useSelector} from "react-redux";
 import {sendMessage, startMessagesListening, stopMessagesListening} from "../../redux/chat-reduser";
 import {AppStateType} from "../../redux/redux-store";
@@ -35,32 +35,41 @@ const Chat: React.FC = () => {
 const Messages: React.FC<{}> = ({}) => {
 
 	const messages = useSelector((state: AppStateType) => state.chat.messages);
-	const messagesDivContainer = useRef<HTMLDivElement>(null);
+	const [isAutoScroll, setIsAutoScroll] = useState(true);
+	const messageAnchorRef = useRef<HTMLDivElement>(null);
+
+	const scrollHandler = (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
+		const element = e.currentTarget;
+		if (Math.abs((element.scrollHeight - element.scrollTop) - element.clientHeight) < 300) {
+			!isAutoScroll && setIsAutoScroll(true);
+		}
+		else {
+			!isAutoScroll && setIsAutoScroll(false);
+		}
+	};
 
 	useEffect(() => {
-		if (messagesDivContainer) {
-			messagesDivContainer.current?.addEventListener('DOMNodeInserted', (event) => {
-				const { currentTarget: target }  = event;
-				(target  as HTMLElement)?.scroll({ top: (target  as HTMLElement)?.scrollHeight, behavior: 'smooth' });
-			});
+		if (isAutoScroll) {
+			messageAnchorRef.current?.scrollIntoView({behavior: 'smooth'});
 		}
 	}, [messages]);
 
 	return (
-		<div style={{height: '400px', overflow: 'auto'}} ref={messagesDivContainer}>
-			{messages.map((m, index) => <Message key={index} message={m} /> )}
+		<div style={{height: '400px', overflow: 'auto'}} onScroll={scrollHandler}>
+			{messages.map((m, index) => <Message key={m.id} message={m} /> )}
+			<div ref={messageAnchorRef}></div>
 
 		</div>
 	);
 }
 
-const Message: React.FC<{message: IChatMessage}> = ({ message}) => {
-
+const Message: React.FC<{message: IChatMessageAPIType}> = React.memo( ({ message}) => {
+	console.log(">>>>>>>>>>>>>>>>>>messages");
 	return <div>
 		<div style={{
-			display: "flex",
-			flexDirection: "column",
-			alignItems: "flex-start"
+				display: "flex",
+				flexDirection: "column",
+				alignItems: "flex-start"
 			}}>
 			<Avatar src={message.photo} />
 			<b>{message.userName}</b>
@@ -68,7 +77,7 @@ const Message: React.FC<{message: IChatMessage}> = ({ message}) => {
 		</div>
 		<hr/>
 	</div>;
-}
+});
 
 const AddMessageForm: React.FC<{}> = ({}) => {
 

@@ -27,7 +27,8 @@
     "redux-form": "^8.2.6",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "uuid": "^8.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -54,6 +55,7 @@
   },
   "devDependencies": {
     "@types/react-test-renderer": "^16.9.2",
+    "@types/uuid": "^8.3.0",
     "eslint": "^6.6.0",
     "eslint-config-airbnb": "^18.0.1",
     "gh-pages": "^2.1.1",

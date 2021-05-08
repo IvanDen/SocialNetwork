@@ -1,11 +1,11 @@
-export interface IChatMessage {
+export interface IChatMessageAPIType {
 	message: string;
 	photo: string;
 	userId: number;
 	userName: string;
 }
 export type StatusType = 'pending' | 'ready' | 'error';
-export type MessagesReceivedSubscriberType = (messages: IChatMessage[]) => void;
+export type MessagesReceivedSubscriberType = (messages: IChatMessageAPIType[]) => void;
 export type StatusChangedSubscriberType = (status: StatusType) => void;
 
 const subscribers = {
